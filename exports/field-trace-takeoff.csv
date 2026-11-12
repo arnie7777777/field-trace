@@ -1,0 +1,60 @@
+﻿Section,System,Description,Size,Material,Quantity,Unit,Photos,Flag
+Pipe,CHWR — Chilled Water Return,Pipe,"8""","CS, 2"" insulation w/ PVC jacket",30.0,LF,FT-03,
+Pipe,CHWS — Chilled Water Supply,Pipe,"8""","CS, 2"" insulation w/ PVC jacket",30.0,LF,FT-03,
+Pipe,CTR — Cooling Tower Return,Pipe,"6""","Sch 40 CS, flanged",5.9,LF,FT-01,
+Pipe,CTS — Cooling Tower Supply,Pipe,"6""","Sch 40 CS, flanged",9.9,LF,FT-01,
+Pipe,CWR — Condenser Water Return,Pipe,"6""","Sch 40 CS, flanged",5.9,LF,FT-01,
+Pipe,CWS — Condenser Water Supply,Pipe,"6""","Sch 40 CS, flanged",9.6,LF,FT-01,
+Pipe,DCW — Domestic Cold Water,Pipe,"3""?",Copper,5.4,LF,FT-06,
+Pipe,DCW — Domestic Cold Water,Pipe,"1-1/4""","Type L copper, insulated",5.0,LF,FT-04,
+Pipe,DCW — Domestic Cold Water,Pipe,"3/4""",Type L copper,2.4,LF,FT-04,
+Pipe,DCW — Domestic Cold Water,Pipe,"2""",Type L copper,0.0,LF,FT-04,
+Pipe,DHW — Domestic Hot Water,Pipe,"1""","Type L copper, insulated",4.4,LF,FT-04,
+Pipe,DHW — Domestic Hot Water,Pipe,"3/4""",Type L copper,2.9,LF,FT-04,
+Pipe,FP — Fire Protection,Pipe,"4""","Sch 10 CS, red",48.1,LF,FT-03,
+Pipe,HWR — Heating Hot Water Return,Pipe,"1-1/2""","CS, insulated",2.5,LF,FT-05,
+Pipe,HWS — Heating Hot Water Supply,Pipe,"4""","CS, 1-1/2"" insulation",31.6,LF,FT-03,
+Pipe,HWS — Heating Hot Water Supply,Pipe,"2-1/2""","Sch 10 CS, grooved",7.8,LF,FT-02,
+Pipe,HWS — Heating Hot Water Supply,Pipe,"6""","CS, insulated",5.1,LF,FT-05,
+Pipe,HWS — Heating Hot Water Supply,Pipe,"6""",CS,4.6,LF,FT-05,
+Pipe,HWS — Heating Hot Water Supply,Pipe,"2""",Galv.? — verify,3.5,LF,FT-02,Verify (<70%)
+Pipe,LPS — Low Pressure Steam,Pipe,"10""","CS, insulated",20.0,LF,FT-05,
+Pipe,UNK — Unidentified — verify,Pipe,?,Insulated (black),8.0,LF,FT-06,Verify (<70%)
+Pipe,UNK — Unidentified — verify,Pipe,"2""?",Copper,5.0,LF,FT-06,Verify (<70%)
+Pipe,UNK — Unidentified — verify,Pipe,"3/4""?",Unknown,3.7,LF,FT-02,Verify (<70%)
+Pipe,UNK — Unidentified — verify,Pipe,"6""?","Insulated, metal jacket",2.5,LF,FT-06,Verify (<70%)
+Pipe,UNK — Unidentified — verify,Pipe,"3/4""",Copper,1.0,LF,FT-04,Verify (<70%)
+Pipe,UNK — Unidentified — verify,Pipe,"1-1/2""?",Copper,0.0,LF,FT-06,Verify (<70%)
+Fittings,,45° elbow,"6""",,2,EA,FT-01,
+Fittings,,90° elbow (grooved),"2-1/2""",,2,EA,FT-02,
+Fittings,,90° elbow (insulated),"6""",,1,EA,FT-05,
+Fittings,,90° LR elbow,"6""",,2,EA,FT-01,
+Fittings,,Cap (stub-out),"1""",,1,EA,FT-04,
+Fittings,,Cap (stub-out),"1-1/4""",,1,EA,FT-04,
+Fittings,,Coupling / transition,"2-1/2"" × 2""",,1,EA,FT-02,
+Fittings,,Elbow (copper),"3""?",,1,EA,FT-06,Verify (<70%)
+Fittings,,Flange pair,"6""",,4,EA,FT-01 FT-05,
+Fittings,,Flexible connector,"6""",,1,EA,FT-05,
+Fittings,,Press coupling,"1""",,1,EA,FT-04,
+Fittings,,Press coupling,"1-1/4""",,1,EA,FT-04,
+Fittings,,Rigid coupling,"2-1/2""",,3,EA,FT-02,
+Fittings,,Tee,"1-1/4"" × 3/4""",,1,EA,FT-04,
+Fittings,,Tee (assumed),"1"" × 3/4""",,1,EA,FT-04,Verify (<70%)
+Fittings,,Tee (grooved),"2-1/2""",,1,EA,FT-02,
+Fittings,,Tee (insulated),"4""",,1,EA,FT-03,
+"Hangers, supports & penetrations",,Clevis / band (verify),—,,1,EA,FT-06,Verify (<70%)
+"Hangers, supports & penetrations",,Insulation shield at support,"8""",,2,EA,FT-03,
+"Hangers, supports & penetrations",,Penetration — firestop sleeve,"3/4""",,3,EA,FT-04,
+"Hangers, supports & penetrations",,Pipe clamp at strut,"2-1/2""",,1,EA,FT-02,
+"Hangers, supports & penetrations",,Trapeze strut post,"1-5/8""",,2,EA,FT-03,
+"Hangers, supports & penetrations",,Vertical member (verify),—,,1,EA,FT-02,Verify (<70%)
+"Hangers, supports & penetrations",,Wall strut channel,"1-5/8""",,2,EA,FT-02 FT-04,
+Valves & devices,,Ball valve (drain/vent),"3/4""",,2,EA,FT-01,
+Valves & devices,,Butterfly valve,"6""",,1,EA,FT-01,
+Valves & devices,,Gate valve,"6""",,2,EA,FT-01,
+Valves & devices,,Gate valve,"2""",,3,EA,FT-05,
+Valves & devices,,Plate & frame heat exchanger,—,,1,EA,FT-01,
+Valves & devices,,Pressure gauge,—,,1,EA,FT-05,
+Valves & devices,,Pump (split-case / end-suction),—,,1,EA,FT-05,
+Valves & devices,,Sprinkler branch outlet,"1""",,1,EA,FT-03,
+Valves & devices,,Thermometer,—,,4,EA,FT-01,
