@@ -1,0 +1,20 @@
+# Optional Render Blueprint. You can also create the web service by hand (see DEPLOY.md).
+# Secrets are NOT stored here: DEMO_USER / DEMO_PASSWORD are entered in the Render dashboard (sync: false).
+services:
+  - type: web
+    name: field-trace
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips='*'
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.13.5"
+      - key: DEMO_USER
+        sync: false
+      - key: DEMO_PASSWORD
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true

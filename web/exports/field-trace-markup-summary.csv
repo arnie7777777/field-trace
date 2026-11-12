@@ -1,0 +1,230 @@
+﻿Photo,Subject,Label,Layer,Author,Date,Status,Confidence,System,Material (suggested),Comments
+FT-01,Polyline,"CTR 6"" CS",Pipe Runs,Field Trace AI,2026-11-09,None,95%,CTR,Carbon steel,"Stencil ""CTR"" read at elbow; arrow points away from HX."
+FT-01,Pipe Tag,"CTR 6"" CS",Labels,Field Trace AI,2026-11-09,None,80%,CTR,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-01,Polyline,"CTS 6"" CS",Pipe Runs,Field Trace AI,2026-11-09,None,93%,CTS,Carbon steel,"Stencil ""CTS"" read; arrow points down toward HX inlet. Bottom bend partially hidden by base."
+FT-01,Pipe Tag,"CTS 6"" CS",Labels,Field Trace AI,2026-11-09,None,80%,CTS,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-01,Polyline,"CWS 6"" CS",Pipe Runs,Field Trace AI,2026-11-09,None,96%,CWS,Carbon steel,"Stencil ""CWS"" read below valve."
+FT-01,Pipe Tag,"CWS 6"" CS",Labels,Field Trace AI,2026-11-09,None,80%,CWS,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-01,Polyline,"CWR 6"" CS",Pipe Runs,Field Trace AI,2026-11-09,None,94%,CWR,Carbon steel,"Stencil ""CWR"" read on 45° offset; arrow points away from HX."
+FT-01,Pipe Tag,"CWR 6"" CS",Labels,Field Trace AI,2026-11-09,None,80%,CWR,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-01,Handwheel valve,V-CWS-1,Valves & Instruments,Field Trace AI,2026-11-09,None,92%,CWS,,"6"" flanged gate valve, handwheel operator"
+FT-01,Handwheel valve,V-CWR-1,Valves & Instruments,Field Trace AI,2026-11-09,None,91%,CWR,,"6"" flanged gate valve, handwheel operator"
+FT-01,Gear-operated valve,V-CTR-1,Valves & Instruments,Field Trace AI,2026-11-09,None,88%,CTR,,"6"" lug butterfly valve, gear operator (blue)"
+FT-01,Thermometer in thermowell,TI-1,Valves & Instruments,Field Trace AI,2026-11-09,None,86%,CTR,,Adjustable-angle stem thermometer in well
+FT-01,Thermometer in thermowell,TI-2,Valves & Instruments,Field Trace AI,2026-11-09,None,87%,CTS,,Adjustable-angle stem thermometer in well
+FT-01,Thermometer in thermowell,TI-3,Valves & Instruments,Field Trace AI,2026-11-09,None,89%,CWS,,Adjustable-angle stem thermometer in well
+FT-01,Thermometer in thermowell,TI-4,Valves & Instruments,Field Trace AI,2026-11-09,None,84%,CWR,,Adjustable-angle stem thermometer in well
+FT-01,Lever valve (drain / vent),"3/4"" Lever valve (drain / vent)",Valves & Instruments,Field Trace AI,2026-11-09,None,79%,CWS,,"3/4"" ball valve, red lever — test/drain port"
+FT-01,Lever valve (drain / vent),"3/4"" Lever valve (drain / vent)",Valves & Instruments,Field Trace AI,2026-11-09,None,77%,CTR,,"3/4"" ball valve, red lever — test/drain port"
+FT-01,Flange pair,"6"" Flange pair",Fittings,Field Trace AI,2026-11-09,None,93%,CWS,,"6"" 150# raised-face flange pair"
+FT-01,Flange pair,"6"" Flange pair",Fittings,Field Trace AI,2026-11-09,None,93%,CWR,,"6"" 150# raised-face flange pair"
+FT-01,45° elbow,"6"" 45° elbow",Fittings,Field Trace AI,2026-11-09,None,90%,CWR,,"6"" 45° elbow (offset to HX)"
+FT-01,45° elbow,"6"" 45° elbow",Fittings,Field Trace AI,2026-11-09,None,88%,CTR,,"6"" 45° elbow (offset to HX)"
+FT-01,90° LR elbow,"6"" 90° LR elbow",Fittings,Field Trace AI,2026-11-09,None,71%,CTS,,"6"" 90° LR elbow — partially hidden by base"
+FT-01,90° LR elbow,"6"" 90° LR elbow",Fittings,Field Trace AI,2026-11-09,None,70%,CWS,,"6"" 90° LR elbow — partially hidden by base"
+FT-01,Plate & frame heat exchanger,PHE-1,Valves & Instruments,Field Trace AI,2026-11-09,None,90%,,,"Plate-and-frame HX, ports S1–S4 visible. Nameplate not legible."
+FT-01,Dimension,"1'-10"" C-C",Dimensions,Field Trace AI,2026-11-09,None,82%,,,Basis: Pipe OD reference; wall-plane estimate
+FT-01,Dimension,"11 3/4"" C-C",Dimensions,Field Trace AI,2026-11-09,None,80%,,,Basis: Pipe OD reference; wall-plane estimate
+FT-01,Dimension,"3'-2""",Dimensions,Field Trace AI,2026-11-09,None,74%,,,Basis: Flange face to HX top port; perspective-corrected
+FT-01,Stamp,AS-BUILT — Draft,Labels,Field Trace AI,2026-11-09,None,100%,,,Stamp applied per office standard.
+FT-01,Cloud+,No support visible at CWR offset,Issues,Field Trace AI,2026-11-09,None,72%,,,"6"" CWR 45° offset between valve and HX shows no hanger or floor stand in frame. Verify support per spec before insulation/close-out."
+FT-01,Cloud+,Nameplate not legible,Issues,Field Trace AI,2026-11-09,None,90%,,,PHE-1 tag assumed from drawing schedule. Capture nameplate close-up (model / serial) for O&M.
+FT-02,Polyline,"HWS 2-1/2"" CS",Pipe Runs,Field Trace AI,2026-11-09,None,91%,HWS,Carbon steel,System suggested from M-drawing routing at this location — confirm. Grooved couplings at 1215 and 1306 px.
+FT-02,Pipe Tag,"HWS 2-1/2"" CS",Labels,Field Trace AI,2026-11-09,None,80%,HWS,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-02,Polyline,"HWS 2-1/2"" CS",Pipe Runs,Field Trace AI,2026-11-09,None,86%,HWS,Carbon steel,Continues as R3 after coupling.
+FT-02,Pipe Tag,"HWS 2-1/2"" CS",Labels,Field Trace AI,2026-11-09,None,80%,HWS,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-02,Polyline,"HWS 2"" GALV?",Pipe Runs,Field Trace AI,2026-11-09,None,68%,HWS,Galvanized steel,Color/finish change at coupling suggests material transition. AI unsure — verify.
+FT-02,Pipe Tag,"HWS 2"" GALV?",Labels,Field Trace AI,2026-11-09,None,60%,HWS,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-02,Polyline,"3/4""? ??",Pipe Runs,Field Trace AI,2026-11-09,None,58%,UNK,Not determinable,"Thin black vertical: could be 3/4"" pipe or 3/8"" threaded rod. Below confidence threshold."
+FT-02,Pipe Tag,"3/4""? ??",Labels,Field Trace AI,2026-11-09,None,50%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-02,Rigid coupling,"2-1/2"" Rigid coupling",Fittings,Field Trace AI,2026-11-09,None,93%,HWS,,Grooved rigid coupling
+FT-02,90° elbow (grooved),"2-1/2"" 90° elbow (grooved)",Fittings,Field Trace AI,2026-11-09,None,94%,HWS,,"2-1/2"" grooved 90° elbow"
+FT-02,Rigid coupling,"2-1/2"" Rigid coupling",Fittings,Field Trace AI,2026-11-09,None,90%,HWS,,Grooved rigid coupling
+FT-02,Tee (grooved),"2-1/2"" Tee (grooved)",Fittings,Field Trace AI,2026-11-09,None,87%,HWS,,"2-1/2"" grooved tee, branch outlet toward viewer — open"
+FT-02,Rigid coupling,"2-1/2"" Rigid coupling",Fittings,Field Trace AI,2026-11-09,None,88%,HWS,,Grooved rigid coupling
+FT-02,90° elbow (grooved),"2-1/2"" 90° elbow (grooved)",Fittings,Field Trace AI,2026-11-09,None,83%,HWS,,"2-1/2"" grooved 90° elbow"
+FT-02,Coupling / transition,"2-1/2"" × 2"" Coupling / transition",Fittings,Field Trace AI,2026-11-09,None,70%,HWS,,Coupling at apparent material change — transition fitting?
+FT-02,Wall strut channel,"1-5/8"" Wall strut channel",Hangers & Supports,Field Trace AI,2026-11-09,None,92%,,,"1-5/8"" strut channel, wall-mounted"
+FT-02,Pipe clamp at strut,"2-1/2"" Pipe clamp at strut",Hangers & Supports,Field Trace AI,2026-11-09,None,80%,HWS,,Strut pipe clamp at riser
+FT-02,Vertical member (verify),Vertical member (verify),Hangers & Supports,Field Trace AI,2026-11-09,None,55%,,,"Vertical rod/pipe at right — unidentified, verify"
+FT-02,Dimension,"4'-0""",Dimensions,Field Trace AI,2026-11-09,None,81%,,,"Basis: CMU coursing (16"" block) at wall plane"
+FT-02,Dimension,"3'-2""",Dimensions,Field Trace AI,2026-11-09,None,78%,,,"Basis: CMU coursing (8"" course) at wall plane"
+FT-02,Stamp,AS-BUILT — Draft,Labels,Field Trace AI,2026-11-09,None,100%,,,Stamp applied per office standard.
+FT-02,Cloud+,Open tee outlet,Issues,Field Trace AI,2026-11-09,None,85%,,,"Branch outlet on 2-1/2"" tee is open. Cap or connect before hydrostatic test."
+FT-02,Cloud+,Material transition at coupling,Issues,Field Trace AI,2026-11-09,None,68%,,,"Finish changes at coupling (black → galvanized?). If dissimilar metals, verify dielectric/transition fitting per spec."
+FT-03,Polyline,"CHWS 8"" CS?",Pipe Runs,Field Trace AI,2026-11-10,None,88%,CHWS,Carbon steel,"Largest insulated main, right position on rack."
+FT-03,Pipe Tag,"CHWS 8"" CS?",Labels,Field Trace AI,2026-11-10,None,50%,CHWS,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-03,Polyline,"CHWR 8"" CS?",Pipe Runs,Field Trace AI,2026-11-10,None,86%,CHWR,Carbon steel,Pairs with R1; same insulated OD.
+FT-03,Pipe Tag,"CHWR 8"" CS?",Labels,Field Trace AI,2026-11-10,None,50%,CHWR,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-03,Polyline,"HWS 4"" CS?",Pipe Runs,Field Trace AI,2026-11-10,None,79%,HWS,Carbon steel,Diagonal main converging to vanishing point.
+FT-03,Pipe Tag,"HWS 4"" CS?",Labels,Field Trace AI,2026-11-10,None,50%,HWS,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-03,Polyline,"FP 4"" CS",Pipe Runs,Field Trace AI,2026-11-10,None,90%,FP,Carbon steel,Sprinkler main — red finish. Branch drop at 1409 px.
+FT-03,Pipe Tag,"FP 4"" CS",Labels,Field Trace AI,2026-11-10,None,86%,FP,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-03,Polyline,"FP 4"" CS",Pipe Runs,Field Trace AI,2026-11-10,None,84%,FP,Carbon steel,"Upper FP main, continues behind CHWS."
+FT-03,Pipe Tag,"FP 4"" CS",Labels,Field Trace AI,2026-11-10,None,84%,FP,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-03,Insulation shield at support,"8"" Insulation shield at support",Hangers & Supports,Field Trace AI,2026-11-10,None,83%,CHWS,,Insulation protection shield at trapeze support
+FT-03,Insulation shield at support,"8"" Insulation shield at support",Hangers & Supports,Field Trace AI,2026-11-10,None,80%,CHWR,,Insulation protection shield
+FT-03,Trapeze strut post,"1-5/8"" Trapeze strut post",Hangers & Supports,Field Trace AI,2026-11-10,None,86%,,,Strut trapeze post (rack)
+FT-03,Trapeze strut post,"1-5/8"" Trapeze strut post",Hangers & Supports,Field Trace AI,2026-11-10,None,84%,,,Strut trapeze post (rack)
+FT-03,Sprinkler branch outlet,"1"" Sprinkler branch outlet",Valves & Instruments,Field Trace AI,2026-11-10,None,74%,FP,,Branch/drop off FP main
+FT-03,Tee (insulated),"4"" Tee (insulated)",Fittings,Field Trace AI,2026-11-10,None,70%,HWS,,Insulated tee cluster at branch — fitting covers irregular
+FT-03,Dimension,"~1'-6"" C-C",Dimensions,Field Trace AI,2026-11-10,None,62%,,,"Basis: Perspective — low confidence, verify"
+FT-03,Stamp,AS-BUILT — Draft,Labels,Field Trace AI,2026-11-10,None,100%,,,Stamp applied per office standard.
+FT-03,Cloud+,Fitting insulation incomplete,Issues,Field Trace AI,2026-11-10,None,71%,,,Insulation at tee cluster is irregular / covers appear missing. Complete fitting covers before ceiling close-in.
+FT-03,Cloud+,Clearance at FP crossing,Issues,Field Trace AI,2026-11-10,None,66%,,,Upper FP main crosses tight above CHWS. Verify clearance and access to FP fittings.
+FT-04,Polyline,"DCW 1-1/4"" CU",Pipe Runs,Field Trace AI,2026-11-10,None,85%,DCW,Copper,Insulated main; press coupling at stub end.
+FT-04,Pipe Tag,"DCW 1-1/4"" CU",Labels,Field Trace AI,2026-11-10,None,78%,DCW,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-04,Polyline,"DHW 1"" CU",Pipe Runs,Field Trace AI,2026-11-10,None,83%,DHW,Copper,Upper insulated main.
+FT-04,Pipe Tag,"DHW 1"" CU",Labels,Field Trace AI,2026-11-10,None,78%,DHW,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-04,Polyline,"DCW 3/4"" CU",Pipe Runs,Field Trace AI,2026-11-10,None,88%,DCW,Copper,Drop from DCW main to sleeve.
+FT-04,Pipe Tag,"DCW 3/4"" CU",Labels,Field Trace AI,2026-11-10,None,88%,DCW,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-04,Polyline,"DHW 3/4"" CU",Pipe Runs,Field Trace AI,2026-11-10,None,76%,DHW,Copper,Branch source hidden by insulation — tee assumed on DHW main. Verify.
+FT-04,Pipe Tag,"DHW 3/4"" CU",Labels,Field Trace AI,2026-11-10,None,76%,DHW,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-04,Polyline,"DCW 2"" CU",Pipe Runs,Field Trace AI,2026-11-10,None,72%,DCW,Copper,"Overhead main, partially occluded by lift and worker."
+FT-04,Pipe Tag,"DCW 2"" CU",Labels,Field Trace AI,2026-11-10,None,72%,DCW,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-04,Polyline,"3/4"" CU",Pipe Runs,Field Trace AI,2026-11-10,None,60%,UNK,Copper,Short stub at sleeve — not connected.
+FT-04,Pipe Tag,"3/4"" CU",Labels,Field Trace AI,2026-11-10,None,60%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-04,Tee,"1-1/4"" × 3/4"" Tee",Fittings,Field Trace AI,2026-11-10,None,84%,DCW,,Reducing tee (press)
+FT-04,Tee (assumed),"1"" × 3/4"" Tee (assumed)",Fittings,Field Trace AI,2026-11-10,None,66%,DHW,,Branch tee hidden by insulation
+FT-04,Press coupling,"1"" Press coupling",Fittings,Field Trace AI,2026-11-10,None,82%,DHW,,Press coupling at stub
+FT-04,Press coupling,"1-1/4"" Press coupling",Fittings,Field Trace AI,2026-11-10,None,82%,DCW,,Press coupling at stub
+FT-04,Cap (stub-out),"1"" Cap (stub-out)",Fittings,Field Trace AI,2026-11-10,None,75%,DHW,,Capped stub-out
+FT-04,Cap (stub-out),"1-1/4"" Cap (stub-out)",Fittings,Field Trace AI,2026-11-10,None,75%,DCW,,Capped stub-out
+FT-04,Penetration — firestop sleeve,PEN-1,Hangers & Supports,Field Trace AI,2026-11-10,None,90%,DCW,,Sleeved penetration with firestop sealant
+FT-04,Penetration — firestop sleeve,PEN-2,Hangers & Supports,Field Trace AI,2026-11-10,None,90%,DHW,,Sleeved penetration with firestop sealant
+FT-04,Penetration — firestop sleeve,PEN-3,Hangers & Supports,Field Trace AI,2026-11-10,None,86%,,,Sleeved penetration with firestop sealant
+FT-04,Wall strut channel,"1-5/8"" Wall strut channel",Hangers & Supports,Field Trace AI,2026-11-10,None,85%,,,Wall-mounted strut
+FT-04,Dimension,"5"" C-C",Dimensions,Field Trace AI,2026-11-10,None,72%,,,Basis: Copper OD reference
+FT-04,Dimension,"1'-5""",Dimensions,Field Trace AI,2026-11-10,None,70%,,,Basis: Copper OD reference; drop length
+FT-04,Stamp,AS-BUILT — Draft,Labels,Field Trace AI,2026-11-10,None,100%,,,Stamp applied per office standard.
+FT-04,Cloud+,Verify firestop system,Issues,Field Trace AI,2026-11-10,None,80%,,,Sealant present at 3 sleeves. Confirm listed firestop system number and label each penetration per spec.
+FT-04,Cloud+,Loose copper stub,Issues,Field Trace AI,2026-11-10,None,74%,,,"3/4"" copper stub at PEN-3 is not connected or capped. Confirm intent; cap and test or remove."
+FT-04,Cloud+,Insulation short of tee,Issues,Field Trace AI,2026-11-10,None,69%,,,Insulation stops short at DCW tee. Complete before inspection.
+FT-05,Polyline,"LPS 10"" CS",Pipe Runs,Field Trace AI,2026-11-06,Accepted,93%,LPS,Carbon steel,"Pipe marker ""LOW PRESS. STEAM"" read; marker arrow is double-headed — flow direction not asserted."
+FT-05,Pipe Tag,"LPS 10"" CS",Labels,Field Trace AI,2026-11-06,Accepted,70%,LPS,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-05,Polyline,"HWS 6"" CS",Pipe Runs,Field Trace AI,2026-11-06,Accepted,87%,HWS,Carbon steel,Pump discharge through flexible connector into insulated elbow. System suggested — confirm.
+FT-05,Pipe Tag,"HWS 6"" CS",Labels,Field Trace AI,2026-11-06,Accepted,80%,HWS,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-05,Polyline,"HWS 6"" CS?",Pipe Runs,Field Trace AI,2026-11-06,Accepted,74%,HWS,Carbon steel,Insulated riser beyond elbow; continuation hidden.
+FT-05,Pipe Tag,"HWS 6"" CS?",Labels,Field Trace AI,2026-11-06,Accepted,55%,HWS,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-05,Polyline,"HWR 1-1/2"" CS?",Pipe Runs,Field Trace AI,2026-11-06,Accepted,70%,HWR,Carbon steel,"Small vertical with partial marker ""HEAT'G RETURN""."
+FT-05,Pipe Tag,"HWR 1-1/2"" CS?",Labels,Field Trace AI,2026-11-06,Accepted,55%,HWR,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-05,Pump (split-case / end-suction),P-2,Valves & Instruments,Field Trace AI,2026-11-06,Accepted,88%,HWS,,Red pump casing — type to be confirmed from nameplate
+FT-05,Flexible connector,"6"" Flexible connector",Fittings,Field Trace AI,2026-11-06,Accepted,92%,HWS,,"Braided flexible pump connector, flanged"
+FT-05,Flange pair,"6"" Flange pair",Fittings,Field Trace AI,2026-11-06,Accepted,90%,HWS,,"6"" flange at pump discharge"
+FT-05,Flange pair,"6"" Flange pair",Fittings,Field Trace AI,2026-11-06,Accepted,90%,HWS,,"6"" flange"
+FT-05,90° elbow (insulated),"6"" 90° elbow (insulated)",Fittings,Field Trace AI,2026-11-06,Accepted,82%,HWS,,Insulated 90° elbow
+FT-05,Handwheel valve,"2"" Handwheel valve",Valves & Instruments,Field Trace AI,2026-11-06,Accepted,78%,,,Red handwheel isolation valve
+FT-05,Handwheel valve,"2"" Handwheel valve",Valves & Instruments,Field Trace AI,2026-11-06,Accepted,78%,,,Red handwheel isolation valves (pair)
+FT-05,Handwheel valve,"2"" Handwheel valve",Valves & Instruments,Field Trace AI,2026-11-06,Accepted,76%,,,Red handwheel isolation valve
+FT-05,Pressure gauge (dial),PI,Valves & Instruments,Field Trace AI,2026-11-06,Accepted,83%,,,Dial pressure gauge
+FT-05,Pipe marker (read),LOW PRESS. STEAM,Labels,Field Trace AI,2026-11-06,Accepted,95%,LPS,,Pipe marker text read and bound to R1
+FT-05,Stamp,AS-BUILT — Reviewed,Labels,Field Trace AI,2026-11-06,Accepted,100%,,,Stamp applied per office standard.
+FT-05,Cloud+,Steam flow direction not asserted,Issues,Field Trace AI,2026-11-06,Accepted,90%,,,Marker arrow is double-headed. Flow direction left unassigned; add from P&ID.
+FT-06,Polyline,"6""? ??",Pipe Runs,Field Trace AI,2026-11-11,None,66%,UNK,Not determinable,Jacketed insulation — system not identifiable (no marker in frame).
+FT-06,Pipe Tag,"6""? ??",Labels,Field Trace AI,2026-11-11,None,50%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-06,Polyline,"DCW 3""? CU",Pipe Runs,Field Trace AI,2026-11-11,None,71%,DCW,Copper,Copper color; size estimated without scale.
+FT-06,Pipe Tag,"DCW 3""? CU",Labels,Field Trace AI,2026-11-11,None,71%,DCW,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-06,Polyline,"2""? CU",Pipe Runs,Field Trace AI,2026-11-11,None,58%,UNK,Copper,Partially hidden behind fittings and insulation.
+FT-06,Pipe Tag,"2""? CU",Labels,Field Trace AI,2026-11-11,None,58%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-06,Polyline,"1-1/2""? CU",Pipe Runs,Field Trace AI,2026-11-11,None,61%,UNK,Copper,Diagonal — may be a sloped drain or perspective.
+FT-06,Pipe Tag,"1-1/2""? CU",Labels,Field Trace AI,2026-11-11,None,61%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-06,Polyline,??,Pipe Runs,Field Trace AI,2026-11-11,None,52%,UNK,Not determinable,Dark insulated run; edges lost in shadow.
+FT-06,Pipe Tag,??,Labels,Field Trace AI,2026-11-11,None,50%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-06,Clevis / band (verify),Clevis / band (verify),Hangers & Supports,Field Trace AI,2026-11-11,None,63%,,,Band at insulated run — clevis hanger?
+FT-06,Elbow (copper),"3""? Elbow (copper)",Fittings,Field Trace AI,2026-11-11,None,60%,DCW,,Copper elbow to horizontal — occluded
+FT-06,Cloud+,Low confidence — re-shoot or verify,Issues,Field Trace AI,2026-11-11,None,95%,,,"Lamp glare and shadow: 3 of 5 runs below 70% confidence. Not auto-drafted. Re-shoot with flash from aisle, or verify in field."
+FT-06,Cloud+,Occluded by lift & worker,Issues,Field Trace AI,2026-11-11,None,90%,,,Lower ceiling and branch continuations hidden. Second angle needed before as-built.
+FT-07,Polyline,"3/4""? CS",Pipe Runs,Field Trace AI,2026-11-11,None,90%,UNK,Carbon steel,"Large-radius bend is bent pipe, so it isn't counted as a fitting."
+FT-07,Pipe Tag,"3/4""? CS",Labels,Field Trace AI,2026-11-11,None,90%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Polyline,"3/4""? CU",Pipe Runs,Field Trace AI,2026-11-11,None,92%,UNK,Copper,Offset jogs in front of the steel header.
+FT-07,Pipe Tag,"3/4""? CU",Labels,Field Trace AI,2026-11-11,None,92%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Polyline,"3/4""? CS",Pipe Runs,Field Trace AI,2026-11-11,None,90%,UNK,Carbon steel,
+FT-07,Pipe Tag,"3/4""? CS",Labels,Field Trace AI,2026-11-11,None,88%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Polyline,"1""? CS",Pipe Runs,Field Trace AI,2026-11-11,None,93%,UNK,Carbon steel,Header with two swaged ends and five welded branches.
+FT-07,Pipe Tag,"1""? CS",Labels,Field Trace AI,2026-11-11,None,90%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Polyline,"3/4""? CS",Pipe Runs,Field Trace AI,2026-11-11,None,90%,UNK,Carbon steel,
+FT-07,Pipe Tag,"3/4""? CS",Labels,Field Trace AI,2026-11-11,None,90%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Polyline,"3/4""? CU",Pipe Runs,Field Trace AI,2026-11-11,None,91%,UNK,Copper,
+FT-07,Pipe Tag,"3/4""? CU",Labels,Field Trace AI,2026-11-11,None,91%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Polyline,"3/4""? CS",Pipe Runs,Field Trace AI,2026-11-11,None,90%,UNK,Carbon steel,
+FT-07,Pipe Tag,"3/4""? CS",Labels,Field Trace AI,2026-11-11,None,88%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Polyline,"1""? CS",Pipe Runs,Field Trace AI,2026-11-11,None,88%,UNK,Carbon steel,
+FT-07,Pipe Tag,"1""? CS",Labels,Field Trace AI,2026-11-11,None,88%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Polyline,"1""? GALV",Pipe Runs,Field Trace AI,2026-11-11,None,86%,UNK,Galvanized steel,"Galvanized vs. weathered stainless: check for zinc spangle, or use a magnet (galvanized steel is magnetic)."
+FT-07,Pipe Tag,"1""? GALV",Labels,Field Trace AI,2026-11-11,None,74%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Polyline,"1""? GALV",Pipe Runs,Field Trace AI,2026-11-11,None,88%,UNK,Galvanized steel,
+FT-07,Pipe Tag,"1""? GALV",Labels,Field Trace AI,2026-11-11,None,72%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Polyline,"1""? GALV",Pipe Runs,Field Trace AI,2026-11-11,None,88%,UNK,Galvanized steel,
+FT-07,Pipe Tag,"1""? GALV",Labels,Field Trace AI,2026-11-11,None,72%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-07,Welded branch (tee),"1""? Welded branch (tee)",Fittings,Field Trace AI,2026-11-11,None,88%,,,Welded tee into the drop. Bead visible
+FT-07,90° elbow (welded),"3/4""? 90° elbow (welded)",Fittings,Field Trace AI,2026-11-11,None,86%,,,Short-radius welded elbow
+FT-07,90° elbow (welded),"3/4""? 90° elbow (welded)",Fittings,Field Trace AI,2026-11-11,None,86%,,,Short-radius welded elbow
+FT-07,Concentric reducer (swaged),Concentric reducer (swaged),Fittings,Field Trace AI,2026-11-11,None,80%,,,Swaged reduction on the drop
+FT-07,Union (brass): copper → galvanized,"3/4""? Union (brass): copper → galvanized",Fittings,Field Trace AI,2026-11-11,None,85%,,,Brass union between copper and galvanized
+FT-07,Union (brass): copper → galvanized,"3/4""? Union (brass): copper → galvanized",Fittings,Field Trace AI,2026-11-11,None,85%,,,Brass union between copper and galvanized
+FT-07,Brazed branch joint,Brazed branch joint,Fittings,Field Trace AI,2026-11-11,None,78%,,,Brass-coloured braze fillet
+FT-07,Brazed branch joint,Brazed branch joint,Fittings,Field Trace AI,2026-11-11,None,78%,,,Brass-coloured braze fillet
+FT-07,Pipe clip (typ.),Pipe clip (typ.),Hangers & Supports,Field Trace AI,2026-11-11,None,90%,,,Single-bolt pipe clip to wall
+FT-07,Pipe clip,Pipe clip,Hangers & Supports,Field Trace AI,2026-11-11,None,88%,,,Pipe clip
+FT-07,Pipe clip,Pipe clip,Hangers & Supports,Field Trace AI,2026-11-11,None,88%,,,Pipe clip
+FT-07,Pipe clip,Pipe clip,Hangers & Supports,Field Trace AI,2026-11-11,None,88%,,,Pipe clip
+FT-07,Pipe clip,Pipe clip,Hangers & Supports,Field Trace AI,2026-11-11,None,88%,,,Pipe clip
+FT-07,Pipe clip,Pipe clip,Hangers & Supports,Field Trace AI,2026-11-11,None,86%,,,Pipe clip
+FT-07,Pipe clip,Pipe clip,Hangers & Supports,Field Trace AI,2026-11-11,None,86%,,,Pipe clip
+FT-07,Dimension,"3'-5""",Dimensions,Field Trace AI,2026-11-11,None,66%,,,Basis: Copper OD reference (22 mm assumed) at wall plane
+FT-07,Stamp,AS-BUILT — Draft,Labels,Field Trace AI,2026-11-11,None,100%,,,Stamp applied per office standard.
+FT-07,Cloud+,Copper ↔ galvanized connection,Issues,Field Trace AI,2026-11-11,None,82%,,,"Copper joins galvanized through a brass union. Brass is a common transition, but confirm the spec's dielectric requirement here."
+FT-07,Cloud+,Heat on galvanized joints,Issues,Field Trace AI,2026-11-11,None,70%,,,Brazing burns the zinc off near the joint. Confirm the joint method is allowed and touch up the coating per spec.
+FT-07,Cloud+,Galvanized or stainless?,Issues,Field Trace AI,2026-11-11,None,66%,,,Matte zinc-grey suggests galvanized. Weathered stainless can look similar. A magnet or spangle check settles it.
+FT-08,Polyline,SS?,Pipe Runs,Field Trace AI,2026-11-11,None,84%,UNK,Stainless steel,The jacket OD isn't the pipe OD. Size can't be measured here.
+FT-08,Pipe Tag,SS?,Labels,Field Trace AI,2026-11-11,None,50%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-08,Polyline,SS?,Pipe Runs,Field Trace AI,2026-11-11,None,82%,UNK,Stainless steel,
+FT-08,Pipe Tag,SS?,Labels,Field Trace AI,2026-11-11,None,50%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-08,Polyline,SS,Pipe Runs,Field Trace AI,2026-11-11,None,80%,UNK,Stainless steel,
+FT-08,Pipe Tag,SS,Labels,Field Trace AI,2026-11-11,None,80%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-08,Polyline,SS,Pipe Runs,Field Trace AI,2026-11-11,None,70%,UNK,Stainless steel,
+FT-08,Pipe Tag,SS,Labels,Field Trace AI,2026-11-11,None,70%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-08,Polyline,SS,Pipe Runs,Field Trace AI,2026-11-11,None,74%,UNK,Stainless steel,Bent without fittings suggests OD tube rather than pipe.
+FT-08,Pipe Tag,SS,Labels,Field Trace AI,2026-11-11,None,74%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-08,Polyline,SS?,Pipe Runs,Field Trace AI,2026-11-11,None,62%,UNK,Stainless steel,Partly hidden behind the cable tray.
+FT-08,Pipe Tag,SS?,Labels,Field Trace AI,2026-11-11,None,62%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-08,Lever valve (blue handle),Lever valve (blue handle),Valves & Instruments,Field Trace AI,2026-11-11,None,74%,,,Quarter-turn lever valve
+FT-08,Lever valve (blue handle),Lever valve (blue handle),Valves & Instruments,Field Trace AI,2026-11-11,None,72%,,,Quarter-turn lever valve
+FT-08,Handwheel valve,Handwheel valve,Valves & Instruments,Field Trace AI,2026-11-11,None,70%,,,Multi-turn handwheel
+FT-08,Actuated valve (electric),Actuated valve (electric),Valves & Instruments,Field Trace AI,2026-11-11,None,66%,,,Electric actuator on a valve below the frame
+FT-08,Pressure gauge (dial),Pressure gauge (dial),Valves & Instruments,Field Trace AI,2026-11-11,None,70%,,,Dial gauge
+FT-08,Pressure gauge (dial),Pressure gauge (dial),Valves & Instruments,Field Trace AI,2026-11-11,None,66%,,,Dial gauge
+FT-08,Elbow (jacketed),Elbow (jacketed),Fittings,Field Trace AI,2026-11-11,None,84%,,,Jacketed elbow
+FT-08,Elbow (jacketed),Elbow (jacketed),Fittings,Field Trace AI,2026-11-11,None,82%,,,Jacketed elbow
+FT-08,Elbow (jacketed),Elbow (jacketed),Fittings,Field Trace AI,2026-11-11,None,82%,,,Jacketed elbow
+FT-08,Cloud+,Material concealed by jacket,Issues,Field Trace AI,2026-11-11,None,80%,,,"Aluminium jacket over insulation. Pipe material and OD can't be seen, so SS is a suggestion from the neighbouring lines. Verify from the spec."
+FT-08,Cloud+,Cable tray (not piping),Issues,Field Trace AI,2026-11-11,None,75%,,,Wire tray excluded from the trace. Check clearance where it crosses the stainless lines.
+FT-08,Cloud+,Background runs not traced,Issues,Field Trace AI,2026-11-11,None,70%,,,Dense rack. Lines behind the front layer need a second angle before an as-built.
+FT-09,Polyline,"3/4""? PEX",Pipe Runs,Field Trace AI,2026-11-11,None,86%,UNK,Composite / plastic: PEX,
+FT-09,Pipe Tag,"3/4""? PEX",Labels,Field Trace AI,2026-11-11,None,78%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-09,Polyline,"3/4""? PEX",Pipe Runs,Field Trace AI,2026-11-11,None,82%,UNK,Composite / plastic: PEX,
+FT-09,Pipe Tag,"3/4""? PEX",Labels,Field Trace AI,2026-11-11,None,76%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-09,Polyline,CU?,Pipe Runs,Field Trace AI,2026-11-11,None,60%,UNK,Copper,Connection to the PEX not visible.
+FT-09,Pipe Tag,CU?,Labels,Field Trace AI,2026-11-11,None,55%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-09,Polyline,"3/4"" PEX",Pipe Runs,Field Trace AI,2026-11-11,None,85%,UNK,Composite / plastic: PEX,"Used as the scale reference (assumed 3/4"")."
+FT-09,Pipe Tag,"3/4"" PEX",Labels,Field Trace AI,2026-11-11,None,80%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-09,Polyline,PEX?,Pipe Runs,Field Trace AI,2026-11-11,None,72%,UNK,Composite / plastic: PEX,
+FT-09,Pipe Tag,PEX?,Labels,Field Trace AI,2026-11-11,None,64%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-09,Lever valve (brass),Lever valve (brass),Valves & Instruments,Field Trace AI,2026-11-11,None,84%,,,Quarter-turn lever valve
+FT-09,Lever valve (yellow handle),Lever valve (yellow handle),Valves & Instruments,Field Trace AI,2026-11-11,None,80%,,,Quarter-turn lever valve
+FT-09,Lever valve (brass),Lever valve (brass),Valves & Instruments,Field Trace AI,2026-11-11,None,70%,,,Quarter-turn valve at the red line
+FT-09,"Tee (brass, crimp)","3/4""? Tee (brass, crimp)",Fittings,Field Trace AI,2026-11-11,None,84%,,,Brass PEX tee
+FT-09,Cloud+,Armoured cable (not piping),Issues,Field Trace AI,2026-11-11,None,80%,,,"Flexible armoured electrical cable excluded from the trace, so it stays out of the takeoff."
+FT-09,Cloud+,Yellow-handle valve on a water line?,Issues,Field Trace AI,2026-11-11,None,60%,,,Yellow levers often mean gas. Confirm the service and the valve's rating.
+FT-10,Polyline,FP CPVC,Pipe Runs,Field Trace AI,2026-11-11,None,90%,FP,Composite / plastic: CPVC,"Printed text raised the material confidence. Without it, orange plastic is only a suggestion."
+FT-10,Pipe Tag,FP CPVC,Labels,Field Trace AI,2026-11-11,None,90%,FP,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-10,Penetration: sheet-metal sleeve,PEN-1,Hangers & Supports,Field Trace AI,2026-11-11,None,88%,FP,,Sleeve being installed through the subfloor
+FT-10,Firestop note (read),UL System 187 · Item 3A,Labels,Field Trace AI,2026-11-11,None,80%,,,Handwritten note read and bound to PEN-1
+FT-10,Cloud+,Firestop listing for CPVC,Issues,Field Trace AI,2026-11-11,None,80%,,,"Note cites UL System 187, Item 3A. Confirm that listed system covers CPVC at this size. Plastic pipe usually needs a different firestop system than metal."
+FT-11,Polyline,SS,Pipe Runs,Field Trace AI,2026-11-11,None,82%,UNK,Stainless steel,Only one impulse line is in frame.
+FT-11,Pipe Tag,SS,Labels,Field Trace AI,2026-11-11,None,74%,UNK,,Label per tool-chest standard: system + size + suggested material. '?' means the material is under 70% and needs a check.
+FT-11,Pressure transmitter (DP-cell style),PT-?1032,Valves & Instruments,Field Trace AI,2026-11-11,None,84%,,,Transmitter with tag label
+FT-11,Process flange (sensor module),Process flange (sensor module),Fittings,Field Trace AI,2026-11-11,None,80%,,,Sensor module with process flange and vent/drain plugs
+FT-11,Strut channel (stand),Strut channel (stand),Hangers & Supports,Field Trace AI,2026-11-11,None,80%,,,Vertical strut
+FT-11,Cloud+,Second impulse line not in frame,Issues,Field Trace AI,2026-11-11,None,66%,,,"DP-style transmitters usually have high- and low-side connections. Only one tube is visible. Confirm the other side, or that it is configured for gauge pressure."
+FT-11,Cloud+,Tag partly legible,Issues,Field Trace AI,2026-11-11,None,80%,,,One character of the tag label isn't readable. Confirm against the instrument index.

@@ -15,8 +15,9 @@ import pikepdf
 from pikepdf import Array, Dictionary, Name, Pdf, String, Stream
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXP = os.path.join(ROOT, "exports")
-PREV = os.path.join(ROOT, "assets", "previews")
+WEB = os.path.join(ROOT, "web")
+EXP = os.path.join(WEB, "exports")
+PREV = os.path.join(WEB, "assets", "previews")
 CHROME = shutil.which("google-chrome") or shutil.which("chromium") or "google-chrome"
 
 D = json.loads(subprocess.check_output(["node", os.path.join(ROOT, "tools", "dump.js")]))
@@ -275,12 +276,12 @@ def annotate(A, page, p):
             mid = (a0[0] + (b0[0] - a0[0]) * t, a0[1] + (b0[1] - a0[1]) * t)
             d = (b0[0] - a0[0], b0[1] - a0[1]); L = math.hypot(*d) or 1; d = (d[0] / L * r["flow"], d[1] / L * r["flow"])
             ops += arrow_ops((mid[0] - d[0] * 6, mid[1] - d[1] * 6), (mid[0] + d[0] * 4, mid[1] + d[1] * 4), 6, col)
-        A.add(page, p, dict(m, _contents=f"{r['size']} {r['sys']} - {FT['systems'][r['sys']]['name']} - {r['mat']}. {r['note']}"), "PolyLine", bbox_of(pts, 6), ops,
+        A.add(page, p, dict(m, _contents=D["runInfo"][p["id"]][r["id"]]["contents"]), "PolyLine", bbox_of(pts, 6), ops,
               {"/Vertices": Array([float(v) for q in pts for v in q]), "/BS": Dictionary(W=2.0, S=Name.D if low else Name.S, **({"D": Array([4, 2.5])} if low else {}))}, col, "runs")
         # tag (FreeText callout, system color)
         tm = ms[r["id"] + "-tag"]
         best = min(((q, math.dist(q, r["lbl"])) for q in densify(r["pts"])), key=lambda z: z[1])[0]
-        callout(A, page, p, tm, sh, placer, best, r["lbl"], [(f"{r['sys']} {r['size']}" + (" ?" if low else ""), True, False, "#0b1014")], col, "labels",
+        callout(A, page, p, tm, sh, placer, best, r["lbl"], [(D["runInfo"][p["id"]][r["id"]]["tag"].rstrip("?") + (" ?" if low or D["runInfo"][p["id"]][r["id"]]["lowMat"] else ""), True, False, "#0b1014")], col, "labels",
                 fill=tuple(hex2rgb(col)))
         n += 2
 
@@ -314,10 +315,16 @@ def annotate(A, page, p):
             n += 1
             continue
         low = it["conf"] < THRESH
-        lines = [(it["tag"] or it["type"], True, False, None), ((f"{it['size']} " if it["size"] else "") + it["type"] if it["tag"] else (it["size"] or it["desc"][:38]), False, True, "#3a4752")]
+        if it.get("kind") == "instrument":
+            sub = it["type"] if it["tag"] else "Model / range not read"
+        elif it.get("family"):
+            sub = "Family not asserted" if it["family"] == "unknown" else it["family"].split(" (")[0] + " family"
+        else:
+            sub = (f"{it['size']} " if it["size"] else "") + it["type"] if it["tag"] else (it["size"] or it["desc"][:38])
+        lines = [(it["tag"] or it["type"], True, False, None), (sub, False, True, "#3a4752")]
         if low:
             lines.append((f"AI unsure ({round(it['conf'] * 100)}%) - verify", True, True, "#b4231a"))
-        callout(A, page, p, dict(m, _contents=it["desc"]), sh, placer, it["at"], it["lbl"], lines, "#2b3a46" if layer in ("fittings", "supports") and not primary else col, layer,
+        callout(A, page, p, dict(m, _contents=it["desc"] + (f" Operator: {it.get('operator')}. Stem: {it.get('stem')}. Family: {it.get('family')}. Body style not determinable from the photo." if it.get("operator") else "") + (" Model and range not read." if it.get("kind") == "instrument" else "")), sh, placer, it["at"], it["lbl"], lines, "#2b3a46" if layer in ("fittings", "supports") and not primary else col, layer,
                 group_to=primary, subj=None if primary is None else m["subject"])
         n += 1
 
@@ -335,7 +342,7 @@ def densify(pts, step=8):
 def main():
     os.makedirs(EXP, exist_ok=True); os.makedirs(PREV, exist_ok=True)
     tmp = tempfile.mkdtemp(prefix="ft-")
-    base = "file://" + os.path.join(ROOT, "sheet.html")
+    base = "file://" + os.path.join(WEB, "sheet.html")
     pages = ["cover"] + [p["id"] for p in FT["photos"]] + ["takeoff"]
     raw = {}
     for pg in pages:
@@ -350,7 +357,7 @@ def main():
         A = Annotator(pdf); total += annotate(A, pdf.pages[0], p); A.finish()
         pdf.docinfo["/Title"] = f"Field Trace - {p['id']} - {p['title']} (sample)"
         pdf.docinfo["/Author"] = "Field Trace AI (Mimetic Technology prototype)"
-        pdf.docinfo["/Subject"] = "Annotated field photo + as-built isometric, prepared for Schilke Construction. Sample data."
+        pdf.docinfo["/Subject"] = "Annotated field photo" + (" + as-built isometric" if p.get("iso") else "") + ". Sample data, public licensed photo. Materials suggested; schedules suggested, verify."
         pdf.save(os.path.join(EXP, f"{p['id']}.pdf"))
         print("annotated", p["id"], len(pdf.pages[0].obj.Annots), "annotations")
 
@@ -362,7 +369,7 @@ def main():
     for i, p in enumerate(FT["photos"]):
         annotate(A, s.pages[i + 1], p)
     A.finish()
-    s.docinfo["/Title"] = "Field Trace - Sample Set (Mimetic Technology prototype for Schilke Construction)"
+    s.docinfo["/Title"] = "Field Trace - Sample Set (Mimetic Technology prototype)"
     s.docinfo["/Author"] = "Field Trace AI (Mimetic Technology prototype)"
     s.save(os.path.join(EXP, "Field-Trace-Sample-Set.pdf"))
 

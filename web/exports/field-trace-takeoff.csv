@@ -1,0 +1,89 @@
+﻿Section,Material (suggested),System,Description,Nominal size,OD,Suggested schedule / wall (verify),Quantity,Unit,Photos,Flag
+Pipe,Carbon steel,CHWR — Chilled Water Return,"CS, 2"" insulation w/ PVC jacket","8""","8.625"" (if 8"" NPS)",Std (Sch 40) (suggested),30.0,LF,FT-03,Verify material
+Pipe,Carbon steel,CHWS — Chilled Water Supply,"CS, 2"" insulation w/ PVC jacket","8""","8.625"" (if 8"" NPS)",Std (Sch 40) (suggested),30.0,LF,FT-03,Verify material
+Pipe,Carbon steel,CTR — Cooling Tower Return,"CS, flanged","6""","6.625""",Sch 40 (suggested),5.9,LF,FT-01,
+Pipe,Carbon steel,CTS — Cooling Tower Supply,"CS, flanged","6""","6.625""",Sch 40 (suggested),9.9,LF,FT-01,
+Pipe,Carbon steel,CWR — Condenser Water Return,"CS, flanged","6""","6.625""",Sch 40 (suggested),5.9,LF,FT-01,
+Pipe,Carbon steel,CWS — Condenser Water Supply,"CS, flanged","6""","6.625""",Sch 40 (suggested),9.6,LF,FT-01,
+Pipe,Carbon steel,FP — Fire Protection,"CS, red","4""","4.5""",Sch 10 (suggested),48.1,LF,FT-03,
+Pipe,Carbon steel,HWR — Heating Hot Water Return,"CS, insulated","1-1/2""",NPS,Sch 40 (suggested),2.5,LF,FT-05,Verify material
+Pipe,Carbon steel,HWS — Heating Hot Water Supply,"CS, 1-1/2"" insulation","4""","4.5"" (if 4"" NPS)",Std (Sch 40) (suggested),31.6,LF,FT-03,Verify material
+Pipe,Carbon steel,HWS — Heating Hot Water Supply,CS,"6""","6.625""",Sch 40 (suggested),9.7,LF,FT-05,Verify material
+Pipe,Carbon steel,HWS — Heating Hot Water Supply,"CS, grooved","2-1/2""","2.875""",Sch 10 (suggested),7.8,LF,FT-02,
+Pipe,Carbon steel,LPS — Low Pressure Steam,"CS, insulated","10""","10.75"" (if 10"" NPS)",Sch 40 (suggested),20.0,LF,FT-05,
+Pipe,Carbon steel,UNK — Unidentified — verify,"Black steel, bent, welded","3/4""?","≈1.05""",Sch 40 (suggested),7.7,LF,FT-07,
+Pipe,Carbon steel,UNK — Unidentified — verify,"Black steel header, swaged ends","1""?","≈1.32""",Sch 40 (suggested),4.9,LF,FT-07,
+Pipe,Stainless steel,UNK — Unidentified — verify,"Insulated, metal jacket",?,Jacket OD only,,0.0,LF,FT-08 FT-11,Verify trace (<70%); Verify material; 7 run(s) not measured: set scale
+Pipe,Copper,DCW — Domestic Cold Water,Copper,"3""?","3.125""?",Type L (suggested),5.4,LF,FT-06,
+Pipe,Copper,DCW — Domestic Cold Water,"copper, insulated","1-1/4""",CTS,Type L (suggested),5.0,LF,FT-04,
+Pipe,Copper,DCW — Domestic Cold Water,copper,"3/4""","0.875""",Type L (suggested),2.4,LF,FT-04,
+Pipe,Copper,DCW — Domestic Cold Water,copper,"2""","2.125""",Type L (suggested),0.0,LF,FT-04,1 run(s) not measured: set scale
+Pipe,Copper,DHW — Domestic Hot Water,"copper, insulated","1""",CTS,Type L (suggested),4.4,LF,FT-04,
+Pipe,Copper,DHW — Domestic Hot Water,copper,"3/4""","0.875""",Type L (suggested),2.9,LF,FT-04,
+Pipe,Copper,UNK — Unidentified — verify,"Copper tube, bent","3/4""?","≈0.875"" (22 mm)",Type L (suggested),6.4,LF,FT-07,
+Pipe,Copper,UNK — Unidentified — verify,Copper,"2""?","2.125""?",Type L (suggested),5.0,LF,FT-06,Verify trace (<70%)
+Pipe,Copper,UNK — Unidentified — verify,Copper,"3/4""","0.875""",Type L (suggested),1.0,LF,FT-04,Verify trace (<70%)
+Pipe,Copper,UNK — Unidentified — verify,Copper stub,?,CTS,,0.2,LF,FT-09,Verify trace (<70%); Verify material
+Pipe,Copper,UNK — Unidentified — verify,Copper,"1-1/2""?","1.625""?",Type L (suggested),0.0,LF,FT-06,Verify trace (<70%); 1 run(s) not measured: set scale
+Pipe,Galvanized steel,HWS — Heating Hot Water Supply,Galv.? — verify,"2""","2.375""",Sch 40 (suggested),3.5,LF,FT-02,Verify trace (<70%); Verify material
+Pipe,Galvanized steel,UNK — Unidentified — verify,"Galvanized steel, brazed branches","1""?","≈1.32""",Sch 40 (suggested),4.9,LF,FT-07,
+Pipe,Composite / plastic: CPVC,FP — Fire Protection,CPVC sprinkler pipe,?,IPS,SDR 13.5 (suggested),0.0,LF,FT-10,1 run(s) not measured: set scale
+Pipe,Composite / plastic: PEX,UNK — Unidentified — verify,"PEX (blue), drop","3/4""","0.875""",SDR 9 (suggested),1.7,LF,FT-09,
+Pipe,Composite / plastic: PEX,UNK — Unidentified — verify,PEX (blue),"3/4""?","0.875""?",SDR 9 (suggested),1.6,LF,FT-09,
+Pipe,Composite / plastic: PEX,UNK — Unidentified — verify,PEX (red),?,CTS,SDR 9 (suggested),1.0,LF,FT-09,Verify material
+Pipe,Not determinable,UNK — Unidentified — verify,Insulated (black),?,unknown,,8.0,LF,FT-06,Verify trace (<70%); Verify material
+Pipe,Not determinable,UNK — Unidentified — verify,Unknown,"3/4""?",unknown,,3.7,LF,FT-02,Verify trace (<70%); Verify material
+Pipe,Not determinable,UNK — Unidentified — verify,"Insulated, metal jacket","6""?",unknown,,2.5,LF,FT-06,Verify trace (<70%); Verify material
+Valves,,,Actuated valve (electric) — Electric actuator (red housing) · family not asserted,—,,,1,EA,FT-08,Verify (<70%)
+Valves,,,Gear-operated valve — Gear operator · quarter-turn (ball or butterfly),"6""",,,1,EA,FT-01,
+Valves,,,"Handwheel valve — Handwheel · multi-turn / rising stem (gate, globe or plug)","6""",,,2,EA,FT-01,
+Valves,,,"Handwheel valve — Handwheel · multi-turn / rising stem (gate, globe or plug)","2""",,,3,EA,FT-05,
+Valves,,,"Handwheel valve — Handwheel · multi-turn / rising stem (gate, globe or plug)",—,,,1,EA,FT-08,
+Valves,,,Lever valve (blue handle) — Lever · quarter-turn (ball or butterfly),—,,,2,EA,FT-08,
+Valves,,,Lever valve (brass) — Lever · quarter-turn (ball or butterfly),—,,,2,EA,FT-09,
+Valves,,,Lever valve (drain / vent) — Lever · quarter-turn (ball or butterfly),"3/4""",,,2,EA,FT-01,
+Valves,,,Lever valve (yellow handle) — Lever · quarter-turn (ball or butterfly),—,,,1,EA,FT-09,
+Valves,,,Sprinkler branch outlet,"1""",,,1,EA,FT-03,
+Instruments,,,Pressure gauge (dial) — Pressure · model / range not read,—,,,3,EA,FT-05 FT-08,Verify (<70%)
+Instruments,,,Pressure transmitter (DP-cell style) — Pressure · model / range not read,—,,,1,EA,FT-11,
+Instruments,,,Thermometer in thermowell — Temperature · model / range not read,—,,,4,EA,FT-01,
+Equipment,,,Plate & frame heat exchanger,—,,,1,EA,FT-01,
+Equipment,,,Pump (split-case / end-suction),—,,,1,EA,FT-05,
+Fittings,,,45° elbow,"6""",,,2,EA,FT-01,
+Fittings,,,90° elbow (grooved),"2-1/2""",,,2,EA,FT-02,
+Fittings,,,90° elbow (insulated),"6""",,,1,EA,FT-05,
+Fittings,,,90° elbow (welded),"3/4""?",,,2,EA,FT-07,
+Fittings,,,90° LR elbow,"6""",,,2,EA,FT-01,
+Fittings,,,Brazed branch joint,—,,,2,EA,FT-07,
+Fittings,,,Cap (stub-out),"1""",,,1,EA,FT-04,
+Fittings,,,Cap (stub-out),"1-1/4""",,,1,EA,FT-04,
+Fittings,,,Concentric reducer (swaged),—,,,1,EA,FT-07,
+Fittings,,,Coupling / transition,"2-1/2"" × 2""",,,1,EA,FT-02,
+Fittings,,,Elbow (copper),"3""?",,,1,EA,FT-06,Verify (<70%)
+Fittings,,,Elbow (jacketed),—,,,3,EA,FT-08,
+Fittings,,,Flange pair,"6""",,,4,EA,FT-01 FT-05,
+Fittings,,,Flexible connector,"6""",,,1,EA,FT-05,
+Fittings,,,Press coupling,"1""",,,1,EA,FT-04,
+Fittings,,,Press coupling,"1-1/4""",,,1,EA,FT-04,
+Fittings,,,Process flange (sensor module),—,,,1,EA,FT-11,
+Fittings,,,Rigid coupling,"2-1/2""",,,3,EA,FT-02,
+Fittings,,,Tee,"1-1/4"" × 3/4""",,,1,EA,FT-04,
+Fittings,,,Tee (assumed),"1"" × 3/4""",,,1,EA,FT-04,Verify (<70%)
+Fittings,,,"Tee (brass, crimp)","3/4""?",,,1,EA,FT-09,
+Fittings,,,Tee (grooved),"2-1/2""",,,1,EA,FT-02,
+Fittings,,,Tee (insulated),"4""",,,1,EA,FT-03,
+Fittings,,,Union (brass): copper → galvanized,"3/4""?",,,2,EA,FT-07,
+Fittings,,,Welded branch (tee),"1""?",,,1,EA,FT-07,
+"Hangers, supports & penetrations",,,Clevis / band (verify),—,,,1,EA,FT-06,Verify (<70%)
+"Hangers, supports & penetrations",,,Insulation shield at support,"8""",,,2,EA,FT-03,
+"Hangers, supports & penetrations",,,Penetration — firestop sleeve,"3/4""",,,3,EA,FT-04,
+"Hangers, supports & penetrations",,,Penetration: sheet-metal sleeve,—,,,1,EA,FT-10,
+"Hangers, supports & penetrations",,,Pipe clamp at strut,"2-1/2""",,,1,EA,FT-02,
+"Hangers, supports & penetrations",,,Pipe clip,—,,,6,EA,FT-07,
+"Hangers, supports & penetrations",,,Pipe clip (typ.),—,,,1,EA,FT-07,
+"Hangers, supports & penetrations",,,Strut channel (stand),—,,,1,EA,FT-11,
+"Hangers, supports & penetrations",,,Trapeze strut post,"1-5/8""",,,2,EA,FT-03,
+"Hangers, supports & penetrations",,,Vertical member (verify),—,,,1,EA,FT-02,Verify (<70%)
+"Hangers, supports & penetrations",,,Wall strut channel,"1-5/8""",,,2,EA,FT-02 FT-04,
+
+Note,Materials are suggested from visible cues and printed text. Wall thickness is not visible in a photo: schedules are suggestions to verify. Pressure / temperature rating and remaining corrosion allowance depend on the wall and must be verified.

@@ -1,0 +1,8 @@
+# Field Trace web service (tested with Python 3.13)
+fastapi==0.162.5
+uvicorn==0.54.0
+python-multipart==0.0.33
+numpy==2.5.4
+opencv-python-headless==5.0.0.93
+pillow==13.0.0
+pillow-heif==1.8.1

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Field Trace · Sign in</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/_login/login.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="pitch" aria-hidden="true">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0f1a22" stroke="#2c3e4c"/><path d="M6 22 H14 V10 H26" fill="none" stroke="#3fc7e8" stroke-width="3" stroke-linejoin="round"/><circle cx="14" cy="22" r="2.6" fill="#ffb020"/><path d="M20 16 l6 0" stroke="#e6edf3" stroke-width="1.6" stroke-dasharray="2 2"/></svg>
+      <span class="bname">Field Trace</span>
+    </div>
+    <h1>AI markup assist<br>for Bluebeam Revu</h1>
+    <p>Field piping photo in. AI first pass out. The reviewer finishes in Revu 21.11.</p>
+    <svg class="trace" viewBox="0 0 520 220">
+      <defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="rgba(63,199,232,.10)"/></pattern></defs>
+      <rect width="520" height="220" fill="url(#g)"/>
+      <path class="pipe" d="M10 170 H190 Q210 170 210 150 V60 Q210 40 230 40 H510"/>
+      <path class="run r1" d="M10 170 H190 Q210 170 210 150 V60 Q210 40 230 40 H510"/>
+      <path class="pipe thin" d="M300 40 V120 Q300 140 320 140 H510"/>
+      <path class="run r2" d="M300 40 V120 Q300 140 320 140 H510"/>
+      <g class="tags">
+        <rect x="64" y="146" width="74" height="18" rx="9" fill="#2f8fe8"/><text x="101" y="159">CHWS 4" CS</text>
+        <rect x="376" y="116" width="76" height="18" rx="9" fill="#f08a3c"/><text x="414" y="129">DCW 1" CU</text>
+        <rect x="228" y="78" width="40" height="18" rx="3" fill="#081118" stroke="#3fd0ff"/><text x="248" y="91" class="d">3'-2"</text>
+      </g>
+      <circle cx="300" cy="40" r="6" fill="#ffb020" stroke="#0b1014" stroke-width="2"/>
+    </svg>
+    <ul class="facts">
+      <li><b>Traces</b> runs, fittings, valves</li>
+      <li><b>Suggests</b> material: CS · SS · copper · galvanized · composite</li>
+      <li><b>Exports</b> editable Revu markups on layers</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <div class="eyebrow">Private prototype</div>
+    <h2>Sign in</h2>
+    <p class="muted">Access is by invitation from Mimetic Technology.</p>
+    {{ERROR}}
+    <form method="post" action="/login" autocomplete="on">
+      <input type="hidden" name="next" value="{{NEXT}}">
+      <label><span>Username</span><input name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required autofocus></label>
+      <label><span>Password</span><input name="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit">Sign in <span aria-hidden="true">→</span></button>
+    </form>
+    <div class="fine">Sessions are private to this browser and expire automatically. Nothing on this site is indexed.</div>
+  </section>
+</main>
+<footer class="foot"><span>Mimetic Technology · mimetictech.ai · 80/20 Software</span><span>Field Trace is not a Bluebeam product</span></footer>
+</body>
+</html>
