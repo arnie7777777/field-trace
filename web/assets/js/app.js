@@ -12,23 +12,26 @@
   const statusOf = (p) => ui.photoStatus[p.id] || p.status;
   const STATUS_LABEL = { ready: "Ready for review", attention: "Needs attention", reviewed: "Reviewed" };
 
-  /* ---------------- routing ---------------- */
+  /* ---------------- routing ----------------
+   The product is the default: #/ or #/inbox. The presenter story lives on ONE page, #/demo/<tab>. */
   function route() {
     if (ui.ro) { ui.ro.disconnect(); ui.ro = null; }
     const h = location.hash.replace(/^#\/?/, "").split("/");
-    const v = h[0] || "demo", id = h[1];
+    let v = h[0] || "inbox"; const id = h[1];
+    if (v === "overview") { location.replace("#/demo/open"); return; }
+    if (!["inbox", "ws", "asbuilt", "takeoff", "export", "demo"].includes(v)) v = "inbox";
     $$(".nav a").forEach((a) => a.classList.toggle("on", a.dataset.v === v));
     document.body.dataset.view = v;
     if (v !== "demo" && window.FTDemo) FTDemo.leave();
     if (!["ws", "asbuilt", "takeoff", "demo"].includes(v)) ui.demoReturn = null;
+    const wsLink = $('.nav a[data-v="ws"]'); if (wsLink) wsLink.href = "#/ws/" + (ui.lastPhoto || "FT-01");
+    const abLink = $('.nav a[data-v="asbuilt"]'); if (abLink) abLink.href = "#/asbuilt/" + (ui.lastPhoto || "FT-01");
     if (v === "demo") return FTDemo.render(view, id);
-    if (v === "overview") return Home();
-    if (v === "inbox") return Inbox();
-    if (v === "ws") return Workspace(C.photoById(id) ? id : "FT-01");
+    if (v === "ws") return Workspace(C.photoById(id) ? id : (ui.lastPhoto || "FT-01"));
     if (v === "asbuilt") return AsBuilt(C.photoById(id) ? id : (ui.lastPhoto || "FT-01"));
     if (v === "takeoff") return Takeoff();
     if (v === "export") return Export();
-    return FTDemo.render(view);
+    return Inbox();
   }
   window.addEventListener("hashchange", route);
   const go = (h) => { if (location.hash === h) route(); else location.hash = h; };
@@ -45,119 +48,62 @@
   const counts = () => { const c = { ready: 0, attention: 0, reviewed: 0 }; FT.photos.forEach((p) => c[statusOf(p)]++); return c; };
   const totalMarkups = () => FT.photos.reduce((s, p) => s + C.buildMarkups(p).length, 0);
 
-  /* ---------------- HOME ---------------- */
-  function Home() {
-    const c = counts();
-    view.innerHTML = `
-    <section class="home">
-      <div class="home-hero">
-        <div class="hero-copy">
-          <div class="eyebrow">Mimetic Technology · 110/20 Software · working prototype</div>
-          <h1>Field Trace</h1>
-          <div class="sub">AI markup assist for Bluebeam Revu 21</div>
-          <p class="lede">Piping photos come in from the field. Field Trace takes the first pass: it traces each run, tags fittings and valves, dimensions what it can, and clouds anything that looks wrong. Rose gets an editable markup set to accept, fix or reject in Revu. The as-built drawing and the takeoff come out of the same markups.</p>
-          <div class="cta">
-            <a class="btn primary" href="#/demo">Start the guided demo</a>
-            <a class="btn" href="#/inbox">Open the inbox <span class="k">${FT.photos.length} photos</span></a>
-            
-          </div>
-          <div class="batch">
-            <div><b>${FT.photos.length}</b><span>photos in batch</span></div>
-            <div><b>${c.ready}</b><span>ready for review</span></div>
-            <div class="warn"><b>${c.attention}</b><span>need attention</span></div>
-            <div class="ok"><b>${c.reviewed}</b><span>reviewed</span></div>
-            <div><b>${totalMarkups()}</b><span>markups drafted</span></div>
-          </div>
-        </div>
-        <figure class="hero-fig" id="heroFig">
-          <div class="hero-stage"><img src="${C.photoSrc(FT.photos[0])}" alt=""><svg class="ovl"></svg></div>
-          <figcaption><span class="dot"></span>FT-01 · AI first pass · <em>6" CTS / CTR / CWS / CWR into PHE-1</em></figcaption>
-        </figure>
-      </div>
-
-      <div class="fit">
-        <div class="fit-head"><h2>Where it fits Rose's day</h2><span class="muted">Revu stays the place where the work happens and gets signed off.</span></div>
-        <div class="lanes">
-          <div class="lane">
-            <div class="lane-name">Today</div>
-            <ol class="steps">
-              <li><b>Photo arrives</b><span>from the field crew</span></li>
-              <li><b>Into a PDF in Revu</b><span>Bluebeam OCR can make stencil and stamp text searchable</span></li>
-              <li class="hand"><b>Draw every markup by hand</b><span>polylines, callouts, dimensions, clouds</span></li>
-              <li><b>Stamp and save</b><span>as-built set</span></li>
-              <li class="hand"><b>As-built and counts done separately</b><span>redrawn and re-counted</span></li>
-            </ol>
-          </div>
-          <div class="lane next">
-            <div class="lane-name">With Field Trace</div>
-            <ol class="steps">
-              <li><b>Photo arrives</b><span>dropped in a folder, processed in batch</span></li>
-              <li class="ai"><b>AI first pass</b><span>runs, symbols, dimensions, issues, all on your layers and colors</span></li>
-              <li class="rose"><b>Rose reviews in Revu 21.11</b><span>accepts, fixes or rejects. Low-confidence items are flagged.</span></li>
-              <li><b>Stamp and issue</b><span>same PDF she produces today</span></li>
-              <li class="ai"><b>As-built and takeoff generated</b><span>from the accepted markups</span></li>
-            </ol>
-          </div>
-        </div>
-        <div class="fit-foot">
-          <div class="ocr">
-            <div class="ocr-col"><div class="tag">Bluebeam OCR</div><p>Reads the text in the image: <code>CTS</code> <code>CWS</code> <code>LOW PRESS. STEAM</code>. Makes the PDF searchable.</p></div>
-            <div class="ocr-arrow">→</div>
-            <div class="ocr-col"><div class="tag ai">Field Trace</div><p>Reads the pipes. Knows <code>CTS</code> is the 6" run on the left, flowing down into PHE-1. Draws it as a markup and puts it in the takeoff.</p></div>
-          </div>
-          <div class="calc" id="calc">
-            <div class="calc-head">Rough math <span class="pill">illustrative only</span></div>
-            <label>Minutes per photo, by hand <input type="number" id="cHand" value="15" min="1" max="120"></label>
-            <label>Minutes per photo, reviewing AI pass <input type="number" id="cAi" value="4" min="1" max="120"></label>
-            <label>Photos per week <input type="number" id="cN" value="40" min="1" max="1000"></label>
-            <div class="calc-out" id="cOut"></div>
-            <div class="calc-note">These are placeholder numbers. We'll time Rose's real workflow in the meeting.</div>
-          </div>
-        </div>
-      </div>
-    </section>`;
-    const p = FT.photos[0];
-    FTOverlay.render($("#heroFig svg"), p, { layers: ui.layers, animate: true, only: ["runs", "labels", "valves", "issues"] });
-    const calc = () => {
-      const h = +$("#cHand").value || 0, a = +$("#cAi").value || 0, n = +$("#cN").value || 0;
-      const saved = ((h - a) * n) / 60;
-      $("#cOut").innerHTML = `<b>${Math.max(0, saved).toFixed(1)} h</b><span>per week back, at these inputs</span>`;
-    };
-    $$("#calc input").forEach((i) => i.addEventListener("input", calc)); calc();
+  /* ---------------- INBOX (home of the product) ---------------- */
+  function card(p) {
+    const ms = C.buildMarkups(p); const st = statusOf(p); const low = ms.filter((m) => m.conf < C.THRESH).length;
+    return `
+          <a class="card st-${st}" href="#/ws/${p.id}">
+            <div class="thumb"><img src="${C.photoSrc(p)}" alt="" loading="lazy"><svg class="ovl" data-id="${p.id}"></svg><span class="hover-hint">${p.upload ? "AI first pass" : "Prepared markup"}</span></div>
+            <div class="card-b">
+              <div class="row1"><span class="pid">${p.id}</span>${p.upload ? `<span class="status s-live">${st === "reviewed" ? "Reviewed" : "AI first pass"}</span>` : `<span class="status s-${st}">${STATUS_LABEL[st]}</span>`}</div>
+              <div class="ttl">${esc(p.title)}</div>
+              <div class="matchips">${matChips(p)}</div>
+              <div class="meta">${esc(p.upload ? (p.engine && p.engine.label) || "Uploaded" : p.location)}</div>
+              <div class="meta mono">${esc(p.taken)} · ${esc(p.by)}</div>
+              <div class="stats"><span><b>${p.runs.length}</b> runs</span><span><b>${p.items.length}</b> symbols</span><span><b>${p.dims.length}</b> dims</span><span class="${p.issues.length ? "iss" : ""}"><b>${p.issues.length}</b> issues</span>${low ? `<span class="lowc"><b>${low}</b> to verify</span>` : ""}</div>
+              <div class="conf"><div class="bar"><i style="width:${p.conf * 100}%" class="${p.conf < C.THRESH ? "low" : ""}"></i></div><span class="mono">${C.pct(p.conf)}</span></div>
+            </div>
+          </a>`;
   }
-
-  /* ---------------- INBOX ---------------- */
+  function engineLine() {
+    const e = ui.engine;
+    if (!e) return `<span class="dot"></span>Checking analysis engine…`;
+    return e.kind === "vision"
+      ? `<span class="dot ok"></span>Engine: vision model (${esc(e.provider)}${e.model ? ": " + esc(e.model) : ""}), with local OpenCV as fallback`
+      : `<span class="dot cv"></span>Engine: local first pass (OpenCV geometry + colour). No vision model configured.`;
+  }
   function Inbox() {
     const c = counts(); const f = ui.inboxFilter;
-    const list = FT.photos.filter((p) => f === "all" || statusOf(p) === f);
+    const match = (p) => f === "all" || statusOf(p) === f;
+    const ups = FT.photos.filter((p) => p.upload && match(p)).reverse(), samples = FT.photos.filter((p) => !p.upload && match(p));
+    const nUp = FT.photos.filter((p) => p.upload).length;
     view.innerHTML = `
     <section class="inbox">
       <div class="page-head">
-        <div><h2>Inbox</h2><div class="muted">${esc(FT.project.name)} · ${esc(FT.project.number)} · field photos as received</div></div>
+        <div><h2>Inbox</h2><div class="muted">Field photos in, AI first pass out. Open one to review it in the workspace.</div></div>
         <div class="chips">
           ${[["all", "All", FT.photos.length], ["ready", "Ready for review", c.ready], ["attention", "Needs attention", c.attention], ["reviewed", "Reviewed", c.reviewed]].map(([k, l, n]) => `<button class="chip ${f === k ? "on" : ""} s-${k}" data-f="${k}">${l}<b>${n}</b></button>`).join("")}
         </div>
       </div>
       <div class="inbox-body">
-        <div class="grid">
-          <label class="card upload-card" id="upCard" tabindex="0">
-            <input type="file" id="upInput" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" hidden>
-            <div class="up-ic">＋</div><b>New photo</b><span>Drop a piping photo here, or click to choose one.<br>JPEG, PNG, WebP or HEIC up to 15 MB.</span>
-            <em>AI first pass: verify material and size</em>
-          </label>
-          ${list.map((p) => { const ms = C.buildMarkups(p); const st = statusOf(p); const low = ms.filter((m) => m.conf < C.THRESH).length; return `
-          <a class="card st-${st}" href="#/ws/${p.id}">
-            <div class="thumb"><img src="${C.photoSrc(p)}" alt="" loading="lazy"><svg class="ovl" data-id="${p.id}"></svg><span class="hover-hint">AI markup preview</span></div>
-            <div class="card-b">
-              <div class="row1"><span class="pid">${p.id}</span>${p.upload ? `<span class="status s-live">Live upload</span>` : `<span class="status s-${st}">${STATUS_LABEL[st]}</span>`}</div>
-              <div class="ttl">${esc(p.title)}</div>
-              <div class="matchips">${matChips(p)}</div>
-              <div class="meta">${esc(p.location)}</div>
-              <div class="meta mono">${esc(p.taken)} · ${esc(p.by)}</div>
-              <div class="stats"><span><b>${p.runs.length}</b> runs</span><span><b>${p.items.length}</b> symbols</span><span><b>${p.dims.length}</b> dims</span><span class="${p.issues.length ? "iss" : ""}"><b>${p.issues.length}</b> issues</span>${low ? `<span class="lowc"><b>${low}</b> to verify</span>` : ""}</div>
-              <div class="conf"><div class="bar"><i style="width:${p.conf * 100}%" class="${p.conf < C.THRESH ? "low" : ""}"></i></div><span class="mono">${C.pct(p.conf)}</span></div>
+        <div class="inbox-main">
+          <div class="intake">
+            <label class="dropzone" id="upCard" tabindex="0">
+              <input type="file" id="upInput" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" hidden>
+              <div class="up-ic">＋</div>
+              <div class="dz-t"><b>New photo</b><span>Drop a piping photo here, or click to choose one. JPEG, PNG, WebP or HEIC, up to 15 MB.</span></div>
+              <em>AI first pass: verify material and size</em>
+            </label>
+            <div class="intake-r">
+              <div class="engine" id="engLine">${engineLine()}</div>
+              <div class="samples">Run the live engine on a sample: ${["FT-07", "FT-05", "FT-08"].map((id) => `<button class="btn sm" data-sample="${id}">${id}</button>`).join("")}</div>
+              <div id="upRes" class="up-status"></div>
             </div>
-          </a>`; }).join("")}
+          </div>
+          ${ups.length ? `<div class="sec-h"><h3>Your uploads</h3><span class="muted">${nUp} photo${nUp === 1 ? "" : "s"} · kept in this browser</span>${nUp ? `<button class="link" id="clearUps">Remove uploads</button>` : ""}</div>
+          <div class="grid">${ups.map(card).join("")}</div>` : ""}
+          <div class="sec-h"><h3>${esc(FT.project.name)}</h3><span class="muted mono">${esc(FT.project.number)}</span><span class="muted">Sample project. Prepared examples: the markups were authored to show the output, not produced live.</span></div>
+          <div class="grid">${samples.map(card).join("") || `<p class="muted">No sample photos match this filter.</p>`}</div>
         </div>
         <aside class="standards">
           <h3>Standards applied to every photo</h3>
@@ -169,12 +115,14 @@
           <div class="std-h">Layers</div>
           <ul class="layers-mini">${FT.layers.map((l) => `<li>${esc(l.name)}</li>`).join("")}</ul>
           <div class="std-h">Review rule</div>
-          <p class="muted">Anything under 70% confidence is dashed, marked <b class="q">?</b>, and left for a person to decide. Photos with too much uncertainty are routed to <em>Needs attention</em> and not auto-drafted.</p>
+          <p class="muted">Anything under 70% confidence is dashed, marked <b class="q">?</b>, and left for a person to decide. Photos with too much uncertainty are routed to <em>Needs attention</em> and not auto-drafted. Schedules are always suggestions: the wall isn't visible.</p>
         </aside>
       </div>
     </section>`;
     $$(".chip").forEach((b) => b.addEventListener("click", () => { ui.inboxFilter = b.dataset.f; Inbox(); }));
     FTDemo.bindDrop($("#upCard"), $("#upInput"), { from: "inbox" });
+    $$("[data-sample]", view).forEach((b) => b.addEventListener("click", () => FTDemo.uploadSample(b.dataset.sample, { from: "inbox" })));
+    const cu = $("#clearUps"); if (cu) cu.addEventListener("click", () => { if (!confirm("Remove all uploaded photos from this browser?")) return; FTApp.clearUploads(); Inbox(); toast("Uploads removed"); });
     $$(".card svg.ovl").forEach((s) => FTOverlay.render(s, C.photoById(s.dataset.id), { layers: ui.layers, only: ["runs", "issues", "valves", "fittings"] }));
   }
 
@@ -211,7 +159,7 @@
           </div>
           ${statusOf(p) === "attention" ? `<div class="banner warn"><b>Needs attention.</b> ${esc(p.summary)}</div>` : ""}
           ${p.upload ? `<div class="banner live"><b>AI first pass: verify material and size.</b> ${esc(p.engine.label)}${p.engine.fallback ? ` <span class="muted">(${esc(p.engine.fallback)})</span>` : ""} · ${p.ms ? (p.ms / 1000).toFixed(1) + " s" : ""}${p.advisories && p.advisories.length ? `<ul>${p.advisories.slice(0, 4).map((a) => `<li>${esc(a)}</li>`).join("")}</ul>` : ""}</div>` : ""}
-          ${ui.demoReturn ? `<a class="back-demo" href="#/demo/${ui.demoReturn}">← Back to demo · step ${ui.demoReturn}</a>` : ""}
+          ${ui.demoReturn ? `<a class="back-demo" href="#/demo/${ui.demoReturn}">← Back to Demo · ${esc(FTDemo.title(ui.demoReturn))}</a>` : ""}
         </div>
         <div class="mlist" id="mlist"></div>
       </div>
@@ -575,7 +523,7 @@
               <li>As-built iso and title block as vector linework, where an iso was drafted</li>
             </ul></div>
           <div class="panel"><div class="ph">Live uploads</div>
-            <p class="small">Photos uploaded in this session are analysed on the server and kept in this browser tab only. They aren't stored and they aren't in the prepared PDF set. Download their markups or takeoff as CSV.</p></div>
+            <p class="small">Uploaded photos are analysed on the server and the result is kept in this browser only (not stored on the server). They aren't in the prepared PDF set. Download their markups or takeoff as CSV.</p></div>
           <div class="panel"><div class="ph">Check in Revu 21.11 before the meeting</div>
             <ol class="small steps-num"><li>Open <code>exports/FT-07.pdf</code> (mixed materials)</li><li>Open the Markups list and check subject, author and comments</li><li>Check the layers panel for the seven markup layers</li><li>Change a status, edit a callout, then save</li></ol></div>
         </aside>
@@ -595,8 +543,40 @@
     m.classList.add("show");
     m.onclick = (e) => { if (e.target === m || e.target.id === "mx") m.classList.remove("show"); };
   });
-  $("#reset").addEventListener("click", () => { C.resetOverrides(); C.state.status = {}; C.state.comment = {}; C.state.hidden = {}; C.state.colorBy = "system"; ui.photoStatus = {}; ui.seen = {}; ui.demoReturn = null; ui.takeoffPhotos = FT.photos.map((p) => p.id); toast("Demo reset (uploads kept)"); route(); });
+  /* ---------------- persistence: uploads + review decisions survive a reload (this browser only) ---------------- */
+  const LS_UP = "ft.uploads.v1", LS_REV = "ft.review.v1";
+  function saveUploads() {
+    let ups = FT.photos.filter((p) => p.upload);
+    for (; ups.length; ups = ups.slice(1)) { try { localStorage.setItem(LS_UP, JSON.stringify(ups)); return; } catch (e) { /* quota: drop the oldest */ } }
+    try { localStorage.removeItem(LS_UP); } catch (e) {}
+  }
+  function saveReview() {
+    try { localStorage.setItem(LS_REV, JSON.stringify({ status: C.state.status, comment: C.state.comment, hidden: C.state.hidden, photoStatus: ui.photoStatus })); } catch (e) {}
+  }
+  function loadSaved() {
+    try { (JSON.parse(localStorage.getItem(LS_UP) || "[]") || []).forEach((p) => { if (p && p.id && !C.photoById(p.id)) { FT.photos.push(p); ui.takeoffPhotos.push(p.id); } }); } catch (e) {}
+    try { const r = JSON.parse(localStorage.getItem(LS_REV) || "null"); if (r) { Object.assign(C.state.status, r.status || {}); Object.assign(C.state.comment, r.comment || {}); Object.assign(C.state.hidden, r.hidden || {}); Object.assign(ui.photoStatus, r.photoStatus || {}); } } catch (e) {}
+  }
+  loadSaved();
+  window.addEventListener("hashchange", saveReview); window.addEventListener("pagehide", saveReview);
+  document.addEventListener("click", () => setTimeout(saveReview, 0), true);
+
+  $("#reset").addEventListener("click", () => { if (!confirm("Reset all review decisions (accept / reject / status) back to the first pass? Uploads are kept.")) return; C.resetOverrides(); C.state.status = {}; C.state.comment = {}; C.state.hidden = {}; C.state.colorBy = "system"; ui.photoStatus = {}; ui.seen = {}; ui.demoReturn = null; ui.takeoffPhotos = FT.photos.map((p) => p.id); saveReview(); toast("Review reset (uploads kept)"); route(); });
+
+  /* signed-in user + engine, shown in the header and on the inbox */
+  (async () => {
+    try {
+      const r = await fetch("/api/session", { credentials: "same-origin" });
+      if (r.status === 401) { location.href = "/login"; return; }
+      if (r.ok) { const js = await r.json(); ui.engine = js.engine || { kind: "local-cv" }; const u = $("#whoUser"); if (u && js.user) u.textContent = js.user; }
+    } catch (e) { ui.engine = { kind: "local-cv" }; }
+    const el = $("#engLine"); if (el) el.innerHTML = engineLine();
+    if (window.FTDemo) FTDemo.setEngine(ui.engine);
+  })();
+
   /* public hooks for the demo page */
-  window.FTApp = { ui, go, toast, route, statusOf, addUpload(p) { FT.photos.push(p); ui.takeoffPhotos.push(p.id); } };
+  window.FTApp = { ui, go, toast, route, statusOf,
+    addUpload(p) { FT.photos.push(p); ui.takeoffPhotos.push(p.id); saveUploads(); },
+    clearUploads() { for (let i = FT.photos.length - 1; i >= 0; i--) if (FT.photos[i].upload) FT.photos.splice(i, 1); ui.takeoffPhotos = ui.takeoffPhotos.filter((id) => C.photoById(id)); if (ui.lastPhoto && !C.photoById(ui.lastPhoto)) ui.lastPhoto = null; try { localStorage.removeItem(LS_UP); } catch (e) {} } };
   route();
 })();

@@ -119,8 +119,11 @@ async def analyze(im: Image.Image, filename="upload"):
                 result = {"runs": runs, "items": items, "issues": issues, "ocrText": text, "summary": summary,
                           "advisories": ["Sizes need a basis (stencil, print line or a known reference). Schedule / wall thickness is never visible — any schedule shown is a suggestion to verify."]}
                 engine = {"kind": "vision", "label": f"Vision model ({name}: {model})"}
+            else:
+                log.warning("vision pass (%s) returned no runs; using local CV", model)
+                engine["fallback"] = f"Vision model ({model}) found no pipe runs — local first pass used."
         except Exception as e:  # fall back quietly; never surface keys or provider errors verbatim
-            log.warning("vision pass failed (%s); using local CV", type(e).__name__)
+            log.warning("vision pass failed (%s: %s); using local CV", type(e).__name__, vision._redact(str(e))[:300])
             engine["fallback"] = "Vision model unavailable — local first pass used."
     if result is None:
         arr = np.asarray(prev)

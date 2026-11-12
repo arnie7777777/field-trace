@@ -1,5 +1,6 @@
-/* Field Trace — guided demo (#/demo/N) + live photo upload (POST /api/analyze).
- * Keys: → / N next · ← / P back · F full screen (present) · Esc leave present / close overlays. */
+/* Field Trace — the Demo page: ONE page, tabs across the top (#/demo/<tab>), plus the shared live
+ * photo upload (POST /api/analyze) used by the Inbox too.
+ * Keys (Demo page only): → / N next tab · ← / P previous · F present full screen · Esc leave present. */
 (function () {
   const C = window.FTCore, FT = C.FT, esc = C.esc;
   const $ = (s, r) => (r || document).querySelector(s);
@@ -26,11 +27,14 @@
   ];
 
   const BEATS = [
-    { id: "open", t: "Open" }, { id: "today", t: "The job today" }, { id: "ocr", t: "OCR vs. Field Trace" },
-    { id: "materials", t: "Materials" }, { id: "limits", t: "OD, instruments, valves" }, { id: "examples", t: "Prepared examples" },
-    { id: "upload", t: "Live upload" }, { id: "review", t: "Review the first pass" }, { id: "outputs", t: "As-built + takeoff" },
-    { id: "export", t: "Export to Revu 21.11" }, { id: "close", t: "Next step" }
+    { id: "open", t: "Field Trace" }, { id: "today", t: "Today's workflow" }, { id: "ocr", t: "Text vs. tracing" },
+    { id: "materials", t: "Materials" }, { id: "limits", t: "Limits" }, { id: "examples", t: "Workspace" },
+    { id: "upload", t: "Live upload" }, { id: "review", t: "Review" }, { id: "outputs", t: "Outputs" },
+    { id: "export", t: "Export" }, { id: "close", t: "Next step" }
   ];
+  const idx = (n) => { const i = BEATS.findIndex((b) => b.id === n); if (i >= 0) return i + 1; const k = parseInt(n, 10); return k >= 1 && k <= BEATS.length ? k : 0; };
+  const hashOf = (k) => "#/demo/" + BEATS[k - 1].id;
+  const title = (n) => { const k = idx(n); return k ? BEATS[k - 1].t : "Demo"; };
 
   /* ------------------------------------------------------------------ beats */
   const R = {
@@ -131,8 +135,8 @@
     examples() {
       const list = FT.photos.filter((p) => !p.upload);
       return `<div class="b-ex">
-        <h2>Prepared examples <span class="muted">· ${list.length} photos, from simple to hard</span></h2>
-        <p class="muted">These markups were prepared by hand to show the output. They are not live model results. The photos are public, licensed images, not the prospect's job photos. Click one to open it in the workspace; the pill at the top brings you back here.</p>
+        <h2>Into the workspace <span class="muted">· ${list.length} photos, from simple to hard</span></h2>
+        <p class="muted">These markups were prepared by hand to show the output. They are not live model results. The photos are public, licensed images, not the prospect's job photos. Click one to open it in the real workspace; the pill at the top right brings you back to this tab.</p>
         <div class="ex-grid">${list.map((p) => `<a class="ex-card" href="#/ws/${p.id}" data-jump="${p.id}">
           <span class="th"><img src="${C.photoSrc(p, true)}" alt="" loading="lazy"></span>
           <span class="b"><span class="pid">${p.id}</span><b>${esc(p.title)}</b><span class="mchips">${p.runs.map((r) => r.material).filter((v, i, a) => a.indexOf(v) === i).map((k) => `<i style="--c:${C.matColor(k)}">${k === "COMP" ? [...new Set(p.runs.filter((r) => r.material === "COMP").map((r) => r.matSub))].join("/") : C.matInfo(k).short}</i>`).join("")}${p.items.some((i) => i.kind === "instrument") ? `<i class="inst">Instr.</i>` : ""}${p.status === "attention" ? `<i class="att">Held</i>` : ""}</span></span></a>`).join("")}</div>
@@ -148,8 +152,8 @@
             <input type="file" id="dzIn" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" hidden>
             <div class="dz-ic">⇪</div><b>Drop a photo here, or click to choose</b><span>JPEG, PNG, WebP or HEIC · up to 15 MB</span>
           </label>
-          <div class="samples">No photo handy? Send a prepared one through the live analysis: ${["FT-07", "FT-08", "FT-10"].map((pid) => `<button class="btn sm" data-sample="${pid}">${pid}</button>`).join(" ")}</div>
-          <div class="engine"><span class="dot ${e ? (e.kind === "vision" ? "ok" : "cv") : ""}"></span>${e ? esc(e.kind === "vision" ? `Vision model available (${e.provider})` : "Local first pass: OpenCV geometry + colour, no vision model configured") : "Checking analysis engine…"}</div>
+          <div class="samples">Or run a prepared photo through the live engine: ${["FT-07", "FT-08", "FT-10"].map((pid) => `<button class="btn sm" data-sample="${pid}">${pid}</button>`).join(" ")}</div>
+          <div class="engine"><span class="dot ${e ? (e.kind === "vision" ? "ok" : "cv") : ""}"></span>${e ? esc(engineText(e)) : "Checking analysis engine…"}</div>
           <p class="lbl-ai">AI first pass: verify material and size.</p>
         </div>
         <div class="up-r" id="upRes">${st.last ? resultCard(st.last) : `<div class="up-empty"><b>What to expect</b><ul>
@@ -220,7 +224,7 @@
           <div><b>4 · A timing study</b><span>Rose's time per photo, by hand vs. reviewing the first pass. We'd quote numbers only after that.</span></div>
         </div>
         <p class="muted">No accuracy figures are claimed in this demo. They'll come from the comparison in step 1.</p>
-        <div class="close-brand"><b>Field Trace</b> · Mimetic Technology · mimetictech.ai · 110/20 Software</div>
+        <div class="close-brand"><b>Field Trace</b> · Mimetic Technology · mimetictech.ai · 110/20 Software: 110% of what you ask for, 20% of the cost</div>
       </div>`;
     }
   };
@@ -241,7 +245,7 @@
   }
 
   function toPhoto(js, file) {
-    const n = (FT.photos.filter((p) => p.upload).length + 1);
+    const n = FT.photos.filter((p) => p.upload).reduce((m, p) => Math.max(m, parseInt(String(p.id).replace(/\D/g, ""), 10) || 0), 0) + 1;
     const id = "UP-" + String(n).padStart(2, "0");
     const sx = js.w / 1000, sy = js.h / 1000; const X = (q) => [q[0] * sx, q[1] * sy];
     const fam = (f) => (/quarter|rotat|ball|butterfly/i.test(f || "") ? FT.QT : /multi|rising|linear|gate|globe|plug/i.test(f || "") ? FT.MT : "unknown");
@@ -291,7 +295,7 @@
       if (opts.from === "inbox") { FTApp.toast(`${p.id} ready: ${p.runs.length} runs`); location.hash = "#/ws/" + p.id; return; }
       const el = $("#upRes"); if (el) { el.innerHTML = resultCard(p); FTOverlay.render($("#resOvl"), p, { colorBy: "material", only: ["runs", "labels", "valves", "issues"] }); bindJumps(el); }
     } catch (e) {
-      say(`<b>Couldn't analyse that photo.</b><span>${esc(e.name === "AbortError" ? "It timed out after 95 seconds. Try again or use a smaller photo." : e.message || String(e))}</span><span class="muted">The prepared examples still work. Use ← to go back.</span>`, "err");
+      say(`<b>Couldn't analyse that photo.</b><span>${esc(e.name === "AbortError" ? "It timed out after 95 seconds. Try again or use a smaller photo." : e.message || String(e))}</span><span class="muted">The prepared examples still work.</span>`, "err");
     } finally { clearTimeout(timer); st.busy = false; }
   }
 
@@ -307,7 +311,7 @@
   /* ------------------------------------------------------------------ render */
   function bindJumps(root) {
     $$("[data-jump],[data-route]", root).forEach((a) => a.addEventListener("click", () => {
-      window.FTApp.ui.demoReturn = st.step;
+      window.FTApp.ui.demoReturn = BEATS[st.step - 1].id;
       if (a.dataset.color) C.state.colorBy = a.dataset.color;
     }));
   }
@@ -321,26 +325,35 @@
   }
   function render(view, n) {
     st.view = view;
-    const k = Math.max(1, Math.min(BEATS.length, parseInt(n, 10) || st.step || 1)); st.step = k;
+    if (n != null && !idx(n)) { location.replace(hashOf(st.step || 1)); return; }
+    const k = idx(n) || st.step || 1; st.step = k;
     const b = BEATS[k - 1];
     view.innerHTML = `<section class="demo beat-${b.id}">
-      <nav class="rail">${BEATS.map((x, i) => `<a href="#/demo/${i + 1}" class="${i + 1 === k ? "on" : i + 1 < k ? "done" : ""}"><span class="n">${i + 1}</span><span class="t">${esc(x.t)}</span></a>`).join("")}
-        <div class="rail-keys"><kbd>←</kbd><kbd>→</kbd> step · <kbd>F</kbd> present · <kbd>Esc</kbd> exit</div></nav>
+      <div class="dtabs">
+        <div class="dt-l"><span class="dt-name">Demo</span><span class="dt-sub">presenter walkthrough</span></div>
+        <nav class="tabs" role="tablist" aria-label="Demo sections">${BEATS.map((x, i) => `<a role="tab" aria-selected="${i + 1 === k}" href="${hashOf(i + 1)}" class="${i + 1 === k ? "on" : ""}"><span class="n">${i + 1}</span><span class="t">${esc(x.t)}</span></a>`).join("")}</nav>
+        <div class="dt-r"><span class="dt-keys"><kbd>←</kbd><kbd>→</kbd> tabs · <kbd>F</kbd> present</span><button class="btn sm present" id="presentBtn" title="Present full screen (F). Esc to exit.">▶ Present</button><button class="btn sm ghost exit-present" id="exitPresent" title="Leave present mode (Esc)">Exit ✕</button></div>
+      </div>
       <div class="beat"><div class="beat-in">${R[b.id]()}</div>
-        <div class="beat-nav"><a class="btn sm ${k === 1 ? "dis" : ""}" href="#/demo/${Math.max(1, k - 1)}">← Back</a>
+        <div class="beat-nav"><a class="btn sm ${k === 1 ? "dis" : ""}" href="${hashOf(Math.max(1, k - 1))}">← ${k > 1 ? esc(BEATS[k - 2].t) : "Back"}</a>
           <div class="prog"><i style="width:${(k / BEATS.length) * 100}%"></i></div><span class="mono">${k} / ${BEATS.length}</span>
-          <a class="btn sm primary ${k === BEATS.length ? "dis" : ""}" href="#/demo/${Math.min(BEATS.length, k + 1)}">${k < BEATS.length ? "Next: " + esc(BEATS[k].t) + " →" : "End"}</a></div></div>
+          <a class="btn sm primary ${k === BEATS.length ? "dis" : ""}" href="${hashOf(Math.min(BEATS.length, k + 1))}">${k < BEATS.length ? "Next: " + esc(BEATS[k].t) + " →" : "End"}</a></div></div>
     </section>`;
     fitStages(view); bindJumps(view);
     if (b.id === "upload") { bindDrop($("#dz"), $("#dzIn"), { from: "demo" });
-      $$("[data-sample]", view).forEach((btn) => btn.addEventListener("click", async () => { const p = P(btn.dataset.sample); try { const r = await fetch(C.photoSrc(p), { credentials: "same-origin" }); const bl = await r.blob(); upload(new File([bl], p.file, { type: "image/jpeg" }), { from: "demo" }); } catch (e) { upload(null); } })); if (st.last) { FTOverlay.render($("#resOvl"), st.last, { colorBy: "material", only: ["runs", "labels", "valves", "issues"] }); } loadEngine(); }
+      $$("[data-sample]", view).forEach((btn) => btn.addEventListener("click", () => uploadSample(btn.dataset.sample, { from: "demo" }))); if (st.last) { FTOverlay.render($("#resOvl"), st.last, { colorBy: "material", only: ["runs", "labels", "valves", "issues"] }); } }
     if (b.id === "outputs") FTIso.render($("#demoIso"), P("FT-07"), { bare: true });
     if (window.FTApp) FTApp.ui.demoReturn = null;
   }
-  async function loadEngine() {
-    if (st.engine) return;
-    try { const r = await fetch("/api/session", { credentials: "same-origin" }); if (r.ok) { const js = await r.json(); st.engine = js.engine || { kind: "local-cv" }; const u = document.getElementById("whoUser"); if (u && js.user) u.textContent = "Signed in: " + js.user; } } catch (e) { st.engine = { kind: "local-cv" }; }
-    if (document.body.dataset.view === "demo" && BEATS[st.step - 1].id === "upload") { const el = $(".b-up .engine"); if (el) { const e = st.engine; el.innerHTML = `<span class="dot ${e.kind === "vision" ? "ok" : "cv"}"></span>${esc(e.kind === "vision" ? `Vision model available (${e.provider})` : "Local first pass: OpenCV geometry + colour, no vision model configured")}`; } }
+  async function uploadSample(pid, opts) {
+    const p = P(pid); if (!p) return;
+    try { const r = await fetch(C.photoSrc(p), { credentials: "same-origin" }); if (r.status === 401) { location.href = "/login"; return; } const bl = await r.blob(); upload(new File([bl], p.file, { type: "image/jpeg" }), opts); }
+    catch (e) { if (window.FTApp) FTApp.toast("Couldn't load the sample photo."); }
+  }
+  function engineText(e) { return e.kind === "vision" ? `Vision model available (${e.provider}${e.model ? ": " + e.model : ""}), local OpenCV as fallback` : "Local first pass: OpenCV geometry + colour, no vision model configured"; }
+  function setEngine(e) {
+    st.engine = e || { kind: "local-cv" };
+    const el = document.querySelector(".b-up .engine"); if (el) el.innerHTML = `<span class="dot ${st.engine.kind === "vision" ? "ok" : "cv"}"></span>${esc(engineText(st.engine))}`;
   }
 
   /* ------------------------------------------------------------------ keys + present */
@@ -349,7 +362,7 @@
     document.body.classList.toggle("presenting", want);
     if (want && document.documentElement.requestFullscreen && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
     if (!want && document.fullscreenElement) document.exitFullscreen().catch(() => {});
-    if (want && document.body.dataset.view !== "demo") location.hash = "#/demo/" + st.step;
+    if (want && document.body.dataset.view !== "demo") location.hash = hashOf(st.step || 1);
   }
   document.addEventListener("fullscreenchange", () => { if (!document.fullscreenElement) document.body.classList.remove("presenting"); });
   document.addEventListener("keydown", (e) => {
@@ -357,13 +370,13 @@
     if (e.key === "Escape") { const m = document.getElementById("modal"); if (m && m.classList.contains("show")) { m.classList.remove("show"); return; } if (document.body.classList.contains("presenting")) { present(false); return; } }
     if (document.body.dataset.view !== "demo" || e.metaKey || e.ctrlKey || e.altKey) return;
     const k = e.key;
-    if (k === "ArrowRight" || k === "n" || k === "N" || k === "PageDown" || (k === " " && !e.target.closest("button,a,label"))) { e.preventDefault(); if (st.step < BEATS.length) location.hash = "#/demo/" + (st.step + 1); }
-    else if (k === "ArrowLeft" || k === "p" || k === "P" || k === "PageUp") { e.preventDefault(); if (st.step > 1) location.hash = "#/demo/" + (st.step - 1); }
+    if (k === "ArrowRight" || k === "n" || k === "N" || k === "PageDown" || (k === " " && !e.target.closest("button,a,label"))) { e.preventDefault(); if (st.step < BEATS.length) location.hash = hashOf(st.step + 1); }
+    else if (k === "ArrowLeft" || k === "p" || k === "P" || k === "PageUp") { e.preventDefault(); if (st.step > 1) location.hash = hashOf(st.step - 1); }
     else if (k === "f" || k === "F") { e.preventDefault(); present(); }
-    else if (k === "Home") location.hash = "#/demo/1"; else if (k === "End") location.hash = "#/demo/" + BEATS.length;
+    else if (k === "Home") location.hash = hashOf(1); else if (k === "End") location.hash = hashOf(BEATS.length);
   });
-  document.addEventListener("click", (e) => { if (e.target.closest("#presentBtn")) present(); });
+  document.addEventListener("click", (e) => { if (e.target.closest("#presentBtn")) present(); else if (e.target.closest("#exitPresent")) present(false); });
   window.addEventListener("resize", () => { /* overlays are viewBox-scaled; nothing to do */ });
 
-  window.FTDemo = { render, leave() {}, upload, bindDrop, BEATS, present, state: st };
+  window.FTDemo = { render, leave() {}, upload, uploadSample, bindDrop, setEngine, title, BEATS, present, state: st };
 })();

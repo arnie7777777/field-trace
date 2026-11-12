@@ -5,13 +5,15 @@ ANTHROPIC_API_KEY, GEMINI_API_KEY, GROQ_API_KEY. VISION_MODEL overrides the defa
 (defaults below may need updating as providers rename models). Any error → caller falls back to
 the local OpenCV pass. No key is ever logged or returned to the browser.
 """
-import base64, json, os, re, urllib.request
+import base64, json, logging, os, re, urllib.error, urllib.request
+
+log = logging.getLogger("fieldtrace")
 
 DEFAULTS = {
     "openai": ("OPENAI_API_KEY", "gpt-4o"),
     "xai": ("XAI_API_KEY", "grok-4"),
     "anthropic": ("ANTHROPIC_API_KEY", "claude-sonnet-4-5"),
-    "gemini": ("GEMINI_API_KEY", "gemini-2.5-flash"),
+    "gemini": ("GEMINI_API_KEY", "gemini-3.8-flash"),
     "groq": ("GROQ_API_KEY", "meta-llama/llama-4-scout-17b-16e-instruct"),
 }
 
@@ -51,10 +53,35 @@ def provider():
     return None
 
 
+# Tried in order when the configured Gemini model id is rejected (404 / 400 / 403 for a retired or
+# access-limited model). gemini-2.5-flash is limited to legacy users, so a new key gets an HTTPError.
+GEMINI_FALLBACKS = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3.5-flash-lite", "gemini-2.5-flash-lite"]
+
+
+class VisionHTTPError(RuntimeError):
+    """HTTP error from a provider, with a short, key-free description safe to log."""
+    def __init__(self, status, detail):
+        super().__init__(f"HTTP {status}: {detail}")
+        self.status = status
+
+
+def _redact(text):
+    return re.sub(r"(AIza[0-9A-Za-z_\-]{10,}|sk-[0-9A-Za-z_\-]{10,}|xai-[0-9A-Za-z_\-]{10,}|key=[^&\s\"]+)", "<redacted>", text or "")
+
+
 def _post(url, headers, body, timeout):
     req = urllib.request.Request(url, data=json.dumps(body).encode(), headers=dict(headers, **{"Content-Type": "application/json"}), method="POST")
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read())
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        detail = ""
+        try:
+            err = json.loads(e.read() or b"{}").get("error") or {}
+            detail = f"{err.get('status') or err.get('type') or ''} {err.get('message') or ''}".strip() if isinstance(err, dict) else str(err)
+        except Exception:
+            pass
+        raise VisionHTTPError(e.code, _redact(detail)[:240] or e.reason) from None
 
 
 def _extract_json(text):
@@ -85,9 +112,29 @@ def call(jpeg_bytes, timeout=55):
         out = _post("https://api.anthropic.com/v1/messages", {"x-api-key": key, "anthropic-version": "2023-06-01"}, body, timeout)
         text = "".join(c.get("text", "") for c in out["content"])
     else:  # gemini
-        body = {"contents": [{"parts": [{"text": PROMPT}, {"inline_data": {"mime_type": "image/jpeg", "data": b64}}]}],
-                "generationConfig": {"temperature": 0.1, "responseMimeType": "application/json"}}
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
-        out = _post(url, {"x-goog-api-key": key}, body, timeout)
-        text = out["candidates"][0]["content"]["parts"][0]["text"]
+        models = [model] + [m for m in GEMINI_FALLBACKS if m != model]
+        last = None
+        for m in models:
+            gen = {"responseMimeType": "application/json"}
+            if m.startswith("gemini-3"):
+                gen["thinkingConfig"] = {"thinkingLevel": "low"}  # Gemini 3.x: no sampling params; keep latency down
+            else:
+                gen["temperature"] = 0.1
+            body = {"contents": [{"role": "user", "parts": [{"text": PROMPT}, {"inline_data": {"mime_type": "image/jpeg", "data": b64}}]}],
+                    "generationConfig": gen}
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent"
+            try:
+                out = _post(url, {"x-goog-api-key": key}, body, timeout)
+            except VisionHTTPError as e:
+                last = e
+                log.warning("gemini model %s rejected: %s", m, e)
+                if e.status in (400, 403, 404):
+                    continue  # model id retired / not available to this key: try the next one
+                raise
+            parts = ((out.get("candidates") or [{}])[0].get("content") or {}).get("parts") or []
+            text = "".join(p.get("text", "") for p in parts if not p.get("thought"))
+            if not text:
+                raise RuntimeError(f"empty response from {m} (finishReason={((out.get('candidates') or [{}])[0]).get('finishReason')})")
+            return name, m, _extract_json(text)
+        raise last or RuntimeError("no gemini model accepted the request")
     return name, model, _extract_json(text)

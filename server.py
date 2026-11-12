@@ -149,8 +149,8 @@ def same_origin(req: Request) -> bool:
 
 def safe_next(nxt: str) -> str:
     if not nxt or not nxt.startswith("/") or nxt.startswith("//") or "\\" in nxt or nxt.startswith("/login"):
-        return "/#/demo"
-    return "/#/demo" if nxt == "/" else nxt
+        return "/#/inbox"
+    return "/#/inbox" if nxt == "/" else nxt
 
 
 # ------------------------------------------------------------------ app

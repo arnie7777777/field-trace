@@ -1,6 +1,6 @@
 # Field Trace — AI markup assist for Bluebeam Revu
 
-A **Mimetic Technology** prototype (110/20 Software · mimetictech.ai). Field piping photos come in, Field Trace
+A **Mimetic Technology** prototype (**110/20 Software**: 110% of what you ask for, 20% of the cost · mimetictech.ai). Field piping photos come in, Field Trace
 does the first pass: it traces each run, tags system, size and a **suggested material**, marks valves and
 instruments, clouds what looks wrong, and rolls the result into an as-built and a takeoff. The reviewer
 finishes in **Bluebeam Revu 21.11**. Field Trace is not a Bluebeam product and claims no Bluebeam API or plug-in.
@@ -14,7 +14,7 @@ The whole site sits **behind a login**. Nothing is public except `/login`, `/hea
 python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 DEMO_USER=yourname DEMO_PASSWORD='choose-a-password' COOKIE_SECURE=0 python3 server.py
-# open http://127.0.0.1:8000  → sign in → lands on the Demo page
+# open http://127.0.0.1:8000  → sign in → lands on the Inbox (the product)
 ```
 
 The login comes **only** from the `DEMO_USER` and `DEMO_PASSWORD` environment variables. No credentials are
@@ -26,28 +26,45 @@ localhost only; leave it unset in production. Deployment: see [DEPLOY.md](DEPLOY
 | `DEMO_USER`, `DEMO_PASSWORD` | Required. The single demo login. The password is hashed with scrypt at start-up and removed from the process environment. |
 | `SESSION_SECRET` | Recommended. Keeps people signed in across restarts. If unset, a random key is used and everyone signs in again after a restart. |
 | `SESSION_HOURS` | Session length, default 12. |
-| `OPENAI_API_KEY` / `XAI_API_KEY` / `ANTHROPIC_API_KEY` / `GEMINI_API_KEY` / `GROQ_API_KEY` | Optional. If one is set, uploads are analysed by that vision model; otherwise the local OpenCV pass runs. `VISION_PROVIDER` / `VISION_MODEL` pick one explicitly. |
+| `OPENAI_API_KEY` / `XAI_API_KEY` / `ANTHROPIC_API_KEY` / `GEMINI_API_KEY` / `GROQ_API_KEY` | Optional. If one is set, uploads are analysed by that vision model; otherwise the local OpenCV pass runs. `VISION_PROVIDER` / `VISION_MODEL` pick one explicitly. Gemini defaults to `gemini-3.8-flash` and falls back through `gemini-3.6-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-flash-lite` if a model id is rejected. Any other failure falls back to local OpenCV, and the workspace banner names the engine that ran. |
 
-## Presenting (Demo page, `#/demo`)
+## Using the product
 
-Sign in and you land on the guided demo. **→ / N** next, **← / P** back, **F** or **▶ Present** for full screen,
-**Esc** to leave full screen or close a dialog. The step rail on the left jumps to any step. It's laid out for
-1280×800 and 1920×1080.
+Sign in and you land on the **Inbox** (`#/inbox`). The top bar is the product: **Inbox · Workspace · As-built ·
+Takeoff · Export**, then **Demo** on its own.
 
-1. **Open.** What it is, on FT-07 coloured by material.
-2. **The job today.** Rose's steps by hand vs. with a first pass. No time-savings number is claimed.
-3. **OCR vs. Field Trace.** OCR reads the text; Field Trace reads the pipe.
-4. **Materials.** The direct answer to "carbon steel? stainless? composite? copper? galvanized?", shown on photos.
-5. **OD, instruments, valves.** What a photo can and can't show.
-6. **Prepared examples.** 11 photos. Clicking one opens the workspace; a "Back to demo" pill returns you.
+1. **Inbox.** Drop a photo on **New photo** (or click it): JPEG, PNG, WebP or HEIC up to 15 MB. The engine line shows
+   whether a vision model or the local OpenCV pass will run. "Run the live engine on a sample" sends FT-07 / FT-05 /
+   FT-08 through the same analysis. When the first pass is back you're taken straight to its workspace.
+   Uploads and review decisions are kept in this browser (localStorage), not on the server; "Remove uploads" clears them.
+2. **Workspace** (`#/ws/<id>`). Before/after slider, layers, markups list, accept / reject (A / R / H), material, size,
+   OD, suggested schedule (always flagged: the wall isn't visible), valve operator + family, instrument type + tag.
+   Colour by System or Material. Uploads carry an "AI first pass: verify material and size" banner naming the engine.
+3. **As-built** (`#/asbuilt/<id>`). Isometric for prepared photos; uploads show the held state until a scale is set.
+4. **Takeoff** (`#/takeoff`). LF by material → system → size, OD, suggested schedule, unmeasured counts. CSV downloads.
+5. **Export** (`#/export`). Revu 21.11 sheets (editable PDF annotations on layers) for the sample project; CSV for uploads.
+
+"Reset review" in the footer puts every accept / reject back to the first pass (uploads are kept).
+
+## Presenting (Demo page, `#/demo/<tab>`)
+
+The whole walkthrough is **one page with tabs** across the top: Field Trace · Today's workflow · Text vs. tracing ·
+Materials · Limits · Workspace · Live upload · Review · Outputs · Export · Next step. Click a tab, or use
+**→ / N** and **← / P**. **F** or **▶ Present** goes full screen; **Esc** leaves. Laid out for 1280×800 and 1920×1080.
+Links on a tab open the real workspace; the "← Back to Demo" pill returns you to that tab.
+
+1. **Field Trace.** What it is, on FT-07 coloured by material.
+2. **Today's workflow.** The reviewer's steps by hand vs. with a first pass. No time-savings number is claimed.
+3. **Text vs. tracing.** OCR reads the text; Field Trace reads the pipe.
+4. **Materials.** Carbon steel, stainless, copper, galvanized, composite: suggested, with cues.
+5. **Limits.** OD visible (conventions differ by material); wall / schedule, rating and corrosion allowance not
+   visible; instruments by type; valves: operator visible, body often not, stem motion gives the family only.
+6. **Workspace.** The prepared examples; each opens in the real workspace.
 7. **Live upload.** Drop a photo, or send FT-07 / FT-08 / FT-10 through the live analysis.
 8. **Review.** Accept / reject / override material and size, set a scale.
-9. **As-built + takeoff.** LF by material, size and system.
-10. **Export to Revu 21.11.** Editable PDF markups on layers, plus CSVs.
+9. **Outputs.** As-built + takeoff, LF by material, size and system.
+10. **Export.** Editable PDF markups on layers for Revu 21.11, plus CSVs.
 11. **Next step.** Real before/afters, your tool chest and layer names, your material rules, a timing study.
-
-The rest of the app (Overview, Inbox, Workspace, As-Built, Takeoff, Export) is in the top bar. The Inbox has a
-**New photo** card for uploads.
 
 ## Materials, size and wall: how they're shown
 

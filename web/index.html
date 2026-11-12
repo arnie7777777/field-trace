@@ -3,40 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Field Trace — AI markup assist for Bluebeam Revu · Mimetic Technology</title>
+<title>Field Trace — AI markup assist for Bluebeam Revu · Mimetic Technology · 110/20 Software</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body data-view="demo">
+<body data-view="inbox">
 <header class="bar">
-  <a class="brand" href="#/demo">
+  <a class="brand" href="#/inbox" title="Field Trace · Inbox">
     <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="5" fill="#0f1a22" stroke="#2c3e4c"/><path d="M6 22 H14 V10 H26" fill="none" stroke="#3fc7e8" stroke-width="3" stroke-linejoin="round"/><circle cx="14" cy="22" r="2.6" fill="#ffb020"/><path d="M20 16 l6 0" stroke="#e6edf3" stroke-width="1.6" stroke-dasharray="2 2"/></svg>
     <span class="bname">Field Trace</span><span class="bsub">AI markup assist for Bluebeam Revu</span>
   </a>
   <nav class="nav">
-    <a href="#/demo" data-v="demo">Demo</a>
-    <a href="#/overview" data-v="overview">Overview</a>
     <a href="#/inbox" data-v="inbox">Inbox</a>
     <a href="#/ws/FT-01" data-v="ws">Workspace</a>
-    <a href="#/asbuilt" data-v="asbuilt">As-Built</a>
+    <a href="#/asbuilt/FT-01" data-v="asbuilt">As-built</a>
     <a href="#/takeoff" data-v="takeoff">Takeoff</a>
     <a href="#/export" data-v="export">Export</a>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a href="#/demo/open" data-v="demo" class="nav-demo">Demo</a>
   </nav>
   <div class="bar-r">
-    <button class="btn sm present" id="presentBtn" title="Present the guided demo full screen (F)">▶ Present</button>
-    <div class="who"><span>Prototype by <b>Mimetic Technology</b></span><span class="for" id="whoUser">110/20 Software</span></div>
-    <form method="post" action="/logout" class="logout"><button class="link" type="submit" title="Sign out">Sign out</button></form>
+    <div class="who"><span><b>Mimetic Technology</b> · <span class="for">110/20 Software</span></span><span class="user">Signed in: <b id="whoUser">…</b></span></div>
+    <form method="post" action="/logout" class="logout"><button class="btn sm ghost" type="submit" title="Log out">Logout</button></form>
   </div>
 </header>
 <main id="view"></main>
 <footer class="foot">
-  <span>Sample data · public, licensed photos, not the prospect's job photos · <button class="link" id="credits">Photo credits</button></span>
+  <span>Sample project uses public, licensed photos (not the prospect's job photos) · <button class="link" id="credits">Photo credits</button></span>
   <span class="sep"></span>
   <span>Built for Bluebeam Revu 21.11 · Field Trace is not a Bluebeam product</span>
   <span class="sep"></span>
-  <button class="link" id="reset">Reset demo</button>
-  <span class="brandfoot">mimetictech.ai · 110/20 Software</span>
+  <button class="link" id="reset" title="Reset accept / reject decisions on every photo">Reset review</button>
+  <span class="brandfoot" title="110% of what you ask for, 20% of the cost">Mimetic Technology · 110/20 Software</span>
 </footer>
 <div id="toast" role="status"></div>
 <div id="modal" class="modal"></div>
