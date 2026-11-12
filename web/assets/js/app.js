@@ -52,7 +52,7 @@
     <section class="home">
       <div class="home-hero">
         <div class="hero-copy">
-          <div class="eyebrow">Mimetic Technology · 80/20 Software · working prototype</div>
+          <div class="eyebrow">Mimetic Technology · 110/20 Software · working prototype</div>
           <h1>Field Trace</h1>
           <div class="sub">AI markup assist for Bluebeam Revu 21</div>
           <p class="lede">Piping photos come in from the field. Field Trace takes the first pass: it traces each run, tags fittings and valves, dimensions what it can, and clouds anything that looks wrong. Rose gets an editable markup set to accept, fix or reject in Revu. The as-built drawing and the takeoff come out of the same markups.</p>

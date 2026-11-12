@@ -264,7 +264,7 @@
     el("rect", { x: 0, y: 0, width: Wt, height: 34, fill: INK }, tb);
     txt(tb, 12, 22, "FIELD TRACE", 15, { weight: 800, fill: paper, cls: "cond", ls: 2 });
     txt(tb, Wt - 12, 15, "MIMETIC TECHNOLOGY", 7.5, { anchor: "end", fill: "#b9c7d3", cls: "cond", ls: 1 });
-    txt(tb, Wt - 12, 26, "80/20 SOFTWARE · PROTOTYPE", 7, { anchor: "end", fill: "#8aa0b2", cls: "cond", ls: 0.6 });
+    txt(tb, Wt - 12, 26, "110/20 SOFTWARE · PROTOTYPE", 7, { anchor: "end", fill: "#8aa0b2", cls: "cond", ls: 0.6 });
     let ty = 34;
     const cell = (x, y0, w, h, label, value, o) => { o = o || {}; el("rect", { x, y: y0, width: w, height: h, fill: "none", stroke: INK, "stroke-width": 0.6 }, tb); txt(tb, x + 5, y0 + 9, label, 6, { fill: "#4b5d6c", cls: "cond", ls: 0.6 }); wrapLines(value, o.wrap || 60).slice(0, 2).forEach((ln, i) => txt(tb, x + 5, y0 + 20 + i * 10, ln, o.fs || 9, { fill: INK, weight: o.weight || 600, cls: "cond" })); };
     cell(0, ty, Wt, 32, "PROJECT", C.FT.project.name + "  (" + C.FT.project.number + ")", { wrap: 52 }); ty += 32;

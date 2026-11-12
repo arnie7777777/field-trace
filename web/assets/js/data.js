@@ -5,7 +5,7 @@
  * "conf" values are illustrative model confidences for the demo, not measured outputs.
  */
 window.FT = {
-  product: { name: "Field Trace", tagline: "AI markup assist for Bluebeam Revu", by: "Mimetic Technology", byUrl: "mimetictech.ai", byTag: "80/20 Software", revu: "Bluebeam Revu 21.11" },
+  product: { name: "Field Trace", tagline: "AI markup assist for Bluebeam Revu", by: "Mimetic Technology", byUrl: "mimetictech.ai", byTag: "110/20 Software", revu: "Bluebeam Revu 21.11" },
   project: { name: "Sample Project — Mechanical Rough-In", number: "DEMO-0142", note: "Sample data. Photos are public, licensed images, not the prospect's job photos.", reviewer: "R. (reviewer)" },
   systems: {
     CTS: { name: "Cooling Tower Supply", color: "#16b8a6" },

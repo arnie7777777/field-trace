@@ -35,7 +35,7 @@
 
   function titleBlock(p) {
     return `<div class="tb">
-      <div class="brand"><span class="n">FIELD TRACE</span><span class="m">MIMETIC TECHNOLOGY · MIMETICTECH.AI<br>80/20 SOFTWARE · PROTOTYPE</span></div>
+      <div class="brand"><span class="n">FIELD TRACE</span><span class="m">MIMETIC TECHNOLOGY · MIMETICTECH.AI<br>110/20 SOFTWARE · PROTOTYPE</span></div>
       <div class="s4"><label>Project</label><b>${esc(FT.project.name)} (${esc(FT.project.number)})</b></div>
       <div class="s2"><label>Prepared by</label><b>MIMETIC TECHNOLOGY</b></div>
       <div class="s4"><label>Drawing title</label><b>AS-BUILT — ${esc(p.title.toUpperCase())}</b></div>

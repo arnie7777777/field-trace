@@ -37,7 +37,7 @@
     open() {
       return `<div class="b-open">
         <div class="b-copy">
-          <div class="eyebrow">Mimetic Technology · 80/20 Software</div>
+          <div class="eyebrow">Mimetic Technology · 110/20 Software</div>
           <h1>Field Trace</h1>
           <div class="sub">AI markup assist for Bluebeam Revu 21.11</div>
           <p class="lede">Field photos of piping come in. Field Trace does the first pass: it traces each run, tags system, size and <b>material</b>, marks valves and instruments, and clouds what looks wrong. Rose reviews it in Revu. The as-built and the takeoff come from the same markups.</p>
@@ -220,7 +220,7 @@
           <div><b>4 · A timing study</b><span>Rose's time per photo, by hand vs. reviewing the first pass. We'd quote numbers only after that.</span></div>
         </div>
         <p class="muted">No accuracy figures are claimed in this demo. They'll come from the comparison in step 1.</p>
-        <div class="close-brand"><b>Field Trace</b> · Mimetic Technology · mimetictech.ai · 80/20 Software</div>
+        <div class="close-brand"><b>Field Trace</b> · Mimetic Technology · mimetictech.ai · 110/20 Software</div>
       </div>`;
     }
   };

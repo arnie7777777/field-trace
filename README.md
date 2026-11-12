@@ -1,6 +1,6 @@
 # Field Trace — AI markup assist for Bluebeam Revu
 
-A **Mimetic Technology** prototype (80/20 Software · mimetictech.ai). Field piping photos come in, Field Trace
+A **Mimetic Technology** prototype (110/20 Software · mimetictech.ai). Field piping photos come in, Field Trace
 does the first pass: it traces each run, tags system, size and a **suggested material**, marks valves and
 instruments, clouds what looks wrong, and rolls the result into an as-built and a takeoff. The reviewer
 finishes in **Bluebeam Revu 21.11**. Field Trace is not a Bluebeam product and claims no Bluebeam API or plug-in.
